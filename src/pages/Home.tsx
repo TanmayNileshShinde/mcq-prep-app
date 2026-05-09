@@ -30,6 +30,12 @@ export default function Home() {
     navigate('/quiz');
   };
 
+  const handleStudy = () => {
+    if (!selectedSubject) return alert("Please select a subject first!");
+    if (selectedUnits.length === 0) return alert("Please select at least one Unit!");
+    navigate('/study');
+  };
+
   return (
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
@@ -45,7 +51,7 @@ export default function Home() {
 
       {/* Subject Selection */}
       <div className="space-y-4">
-        <h2 className="text-xl font-semibold flex items-center gap-2">
+        <h2 className="text-xl font-semibold flex items-center gap-2 text-white">
           <BrainCircuit className="text-indigo-400" /> Choose Subject
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -58,8 +64,8 @@ export default function Home() {
                 ${!sub.available 
                   ? 'border-slate-800 bg-slate-900/50 text-slate-600 cursor-not-allowed' 
                   : selectedSubject === sub.name 
-                    ? 'border-indigo-500 bg-indigo-500/10 shadow-[0_0_15px_rgba(99,102,241,0.2)]' 
-                    : 'border-slate-800 bg-slate-800/50 hover:border-slate-700'}`}
+                    ? 'border-indigo-500 bg-indigo-500/10 shadow-[0_0_15px_rgba(99,102,241,0.2)] text-white' 
+                    : 'border-slate-800 bg-slate-800/50 hover:border-slate-700 text-slate-300'}`}
             >
               {sub.name}
               {!sub.available && (
@@ -72,7 +78,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Unit Selection (Appears only after subject is selected) */}
+      {/* Unit Selection */}
       <AnimatePresence>
         {selectedSubject && (
           <motion.div 
@@ -81,7 +87,7 @@ export default function Home() {
             exit={{ opacity: 0, height: 0 }}
             className="space-y-4 overflow-hidden"
           >
-            <h2 className="text-xl font-semibold flex items-center gap-2">
+            <h2 className="text-xl font-semibold flex items-center gap-2 text-white">
               <BookOpen className="text-emerald-400" /> Select Units
             </h2>
             <div className="flex flex-wrap gap-3">
@@ -103,9 +109,8 @@ export default function Home() {
       </AnimatePresence>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Question Count Selection */}
         <div className="space-y-4">
-          <h2 className="text-xl font-semibold flex items-center gap-2">
+          <h2 className="text-xl font-semibold flex items-center gap-2 text-white">
             <Hash className="text-cyan-400" /> Question Amount
           </h2>
           <div className="flex flex-wrap gap-3">
@@ -124,9 +129,8 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Timer Selection */}
         <div className="space-y-4">
-          <h2 className="text-xl font-semibold flex items-center gap-2">
+          <h2 className="text-xl font-semibold flex items-center gap-2 text-white">
             <Timer className="text-rose-400" /> Time Per Question
           </h2>
           <div className="flex flex-wrap gap-3">
@@ -146,13 +150,19 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Start Button */}
-      <div className="pt-8">
+      {/* Action Buttons */}
+      <div className="pt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
         <button
           onClick={handleStart}
           className="w-full py-4 rounded-2xl bg-gradient-to-r from-indigo-500 to-cyan-500 hover:from-indigo-400 hover:to-cyan-400 text-white text-xl font-bold shadow-lg transform transition active:scale-[0.98]"
         >
-          Start Session
+          Start Quiz
+        </button>
+        <button
+          onClick={handleStudy}
+          className="w-full py-4 rounded-2xl border-2 border-emerald-500 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 text-xl font-bold shadow-lg transform transition active:scale-[0.98]"
+        >
+          Study Mode
         </button>
       </div>
     </motion.div>
