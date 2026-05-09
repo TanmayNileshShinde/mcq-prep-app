@@ -1,7 +1,8 @@
 // src/pages/Home.tsx
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { BrainCircuit, Timer, Hash, BookOpen } from 'lucide-react';
+import { BrainCircuit, Timer, Hash, BookOpen, AlertTriangle } from 'lucide-react';
 import { useQuizStore } from '../store/useQuizStore';
 
 export default function Home() {
@@ -14,6 +15,17 @@ export default function Home() {
     resetQuizState 
   } = useQuizStore();
 
+  // --- NEW: Custom Error State ---
+  const [error, setError] = useState<string | null>(null);
+
+  // Auto-hide the error message after 3 seconds
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => setError(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [error]);
+
   const subjects = [
     { name: "Emerging Trends in CE & IT", available: true },
     { name: "Management", available: false }
@@ -23,16 +35,19 @@ export default function Home() {
   const counts = [15, 30, 50, 70];
   const timers = [{ label: "Off", value: null }, { label: "30s", value: 30 }, { label: "60s", value: 60 }];
 
+  // --- UPDATED: Replaced alerts with setError ---
   const handleStart = () => {
-    if (!selectedSubject) return alert("Please select a subject first!");
-    if (selectedUnits.length === 0) return alert("Please select at least one Unit!");
+    if (!selectedSubject) return setError("Please select a subject first!");
+    if (selectedUnits.length === 0) return setError("Please select at least one Unit!");
+    setError(null);
     resetQuizState(); 
     navigate('/quiz');
   };
 
   const handleStudy = () => {
-    if (!selectedSubject) return alert("Please select a subject first!");
-    if (selectedUnits.length === 0) return alert("Please select at least one Unit!");
+    if (!selectedSubject) return setError("Please select a subject first!");
+    if (selectedUnits.length === 0) return setError("Please select at least one Unit!");
+    setError(null);
     navigate('/study');
   };
 
@@ -40,7 +55,7 @@ export default function Home() {
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="space-y-10"
+      className="space-y-10 relative pb-10"
     >
       <div className="text-center space-y-4">
         <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">
@@ -165,6 +180,21 @@ export default function Home() {
           Study Mode
         </button>
       </div>
+
+      {/* --- NEW: The Floating Custom Toast --- */}
+      <AnimatePresence>
+        {error && (
+          <motion.div
+            initial={{ opacity: 0, y: 50, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.9 }}
+            className="fixed bottom-10 left-1/2 transform -translate-x-1/2 z-50 flex items-center gap-3 px-6 py-4 bg-rose-500/90 backdrop-blur-md text-white font-bold rounded-full shadow-[0_10px_40px_rgba(244,63,94,0.4)] border border-rose-400"
+          >
+            <AlertTriangle size={24} />
+            {error}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }
