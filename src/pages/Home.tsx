@@ -15,7 +15,6 @@ export default function Home() {
     resetQuizState 
   } = useQuizStore();
 
-  // --- NEW: Custom Error State ---
   const [error, setError] = useState<string | null>(null);
 
   // Auto-hide the error message after 3 seconds
@@ -35,7 +34,6 @@ export default function Home() {
   const counts = [15, 30, 50, 70];
   const timers = [{ label: "Off", value: null }, { label: "30s", value: 30 }, { label: "60s", value: 60 }];
 
-  // --- UPDATED: Replaced alerts with setError ---
   const handleStart = () => {
     if (!selectedSubject) return setError("Please select a subject first!");
     if (selectedUnits.length === 0) return setError("Please select at least one Unit!");
@@ -93,7 +91,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Unit Selection */}
+      {/* Unit Selection (Appears only after subject is selected) */}
       <AnimatePresence>
         {selectedSubject && (
           <motion.div 
@@ -181,17 +179,17 @@ export default function Home() {
         </button>
       </div>
 
-      {/* --- NEW: The Floating Custom Toast --- */}
+      {/* Floating Custom Toast */}
       <AnimatePresence>
         {error && (
           <motion.div
             initial={{ opacity: 0, y: 50, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
-            className="fixed bottom-10 left-1/2 transform -translate-x-1/2 z-50 flex items-center gap-3 px-6 py-4 bg-rose-500/90 backdrop-blur-md text-white font-bold rounded-full shadow-[0_10px_40px_rgba(244,63,94,0.4)] border border-rose-400"
+            className="fixed bottom-10 left-[50%] -translate-x-[50%] z-50 flex items-center justify-center gap-3 px-6 py-4 bg-rose-600/95 backdrop-blur-md text-white font-semibold rounded-full shadow-2xl border border-rose-400 w-max max-w-[90vw]"
           >
-            <AlertTriangle size={24} />
-            {error}
+            <AlertTriangle className="shrink-0" size={20} />
+            <span className="text-center">{error}</span>
           </motion.div>
         )}
       </AnimatePresence>
