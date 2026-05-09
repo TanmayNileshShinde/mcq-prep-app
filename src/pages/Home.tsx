@@ -122,6 +122,7 @@ export default function Home() {
       </AnimatePresence>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Question Count Selection */}
         <div className="space-y-4">
           <h2 className="text-xl font-semibold flex items-center gap-2 text-white">
             <Hash className="text-cyan-400" /> Question Amount
@@ -142,6 +143,7 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Timer Selection */}
         <div className="space-y-4">
           <h2 className="text-xl font-semibold flex items-center gap-2 text-white">
             <Timer className="text-rose-400" /> Time Per Question
@@ -179,7 +181,7 @@ export default function Home() {
         </button>
       </div>
 
-      {/* Floating Custom Toast */}
+      {/* Floating Custom Toast (Fixed Centering) */}
       <AnimatePresence>
         {error && (
           <motion.div
