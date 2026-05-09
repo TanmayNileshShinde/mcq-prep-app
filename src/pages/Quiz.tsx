@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Timer, Flame, CheckCircle2, XCircle } from 'lucide-react';
 import { useQuizStore } from '../store/useQuizStore';
-import { questionBank } from '../data/questions';
+import { questionBank, type Question } from '../data/questions';
 
 // Fisher-Yates Shuffle
 function shuffleArray<T>(array: T[]): T[] {
@@ -21,42 +21,47 @@ export default function Quiz() {
   const { 
     selectedSubject, selectedUnits, questionCount, timePerQuestion, 
     incrementScore, currentStreak, incrementStreak, resetStreak,
-    addMistake, seenQuestionIds, markAsSeen // <--- Pulled in our tracking data
+    addMistake, seenQuestionIds, markAsSeen 
   } = useQuizStore();
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [timeLeft, setTimeLeft] = useState<number | null>(timePerQuestion);
+  
+  // --- THE FIX: We create a state for the deck ---
+  const [sessionDeck, setSessionDeck] = useState<Question[]>([]);
 
-  // --- THE SMART MASTERY ALGORITHM ---
-  const filteredQuestions = useMemo(() => {
-    // 1. Get all questions for the selected subject and units
+  // --- THE FIX: Build and shuffle the deck EXACTLY ONCE when the component mounts ---
+  useEffect(() => {
     const pool = questionBank.filter(
       q => q.subject === selectedSubject && selectedUnits.includes(q.unit)
     );
 
-    // 2. Separate them into two piles
     const unseen = pool.filter(q => !seenQuestionIds.includes(q.id));
     const seen = pool.filter(q => seenQuestionIds.includes(q.id));
 
-    // 3. Shuffle both piles separately, put Unseen on top!
-    return [...shuffleArray(unseen), ...shuffleArray(seen)];
-  }, [selectedSubject, selectedUnits, seenQuestionIds]);
+    const fullDeck = [...shuffleArray(unseen), ...shuffleArray(seen)];
+    
+    // Slice it to the exact question count so you never get 30 instead of 15!
+    setSessionDeck(fullDeck.slice(0, questionCount));
+    
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // <-- This empty array tells React: "NEVER run this again during the session"
 
-  const currentQuestion = filteredQuestions[currentIndex];
+  const currentQuestion = sessionDeck[currentIndex];
 
   const shuffledOptions = useMemo(() => {
     if (!currentQuestion) return [];
     const optionsWithIndex = currentQuestion.options.map((text, originalIndex) => ({ text, originalIndex }));
     return shuffleArray(optionsWithIndex);
-  }, [currentQuestion]);
+  }, [currentQuestion?.id]);
 
   const handleSubmit = useCallback(() => {
-    if (selectedOption === null || isSubmitted) return;
+    if (selectedOption === null || isSubmitted || !currentQuestion) return;
     
     setIsSubmitted(true);
-    markAsSeen(currentQuestion.id); // <--- Mark it as seen the moment you answer it!
+    markAsSeen(currentQuestion.id); 
     
     const isTimeOut = selectedOption === -1;
     const isCorrect = !isTimeOut && shuffledOptions[selectedOption].originalIndex === currentQuestion.correctAnswerIndex;
@@ -75,7 +80,7 @@ export default function Quiz() {
   }, [selectedOption, isSubmitted, currentQuestion, shuffledOptions, incrementScore, incrementStreak, resetStreak, addMistake, markAsSeen]);
 
   const handleNext = () => {
-    if (currentIndex + 1 >= Math.min(questionCount, filteredQuestions.length)) {
+    if (currentIndex + 1 >= sessionDeck.length) {
       navigate('/results'); 
     } else {
       setCurrentIndex(prev => prev + 1);
@@ -86,12 +91,12 @@ export default function Quiz() {
   };
 
   useEffect(() => {
-    if (timeLeft === null || isSubmitted) return;
+    if (timeLeft === null || isSubmitted || !currentQuestion) return;
     if (timeLeft === 0) {
       setSelectedOption(-1); 
       setIsSubmitted(true);
       resetStreak();
-      markAsSeen(currentQuestion.id); // Mark seen even if time runs out
+      markAsSeen(currentQuestion.id); 
       addMistake({
         question: currentQuestion.text,
         userAnswer: "Time Ran Out",
@@ -120,10 +125,11 @@ export default function Quiz() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isSubmitted, handleSubmit, handleNext]);
 
-  if (!currentQuestion) {
+  // Prevent crashing if the deck hasn't loaded yet
+  if (sessionDeck.length === 0 || !currentQuestion) {
     return (
       <div className="text-center mt-20 space-y-4">
-        <h2 className="text-2xl text-rose-400">No questions found for this unit!</h2>
+        <h2 className="text-2xl text-rose-400">Loading your questions...</h2>
         <button onClick={() => navigate('/')} className="px-6 py-2 bg-indigo-500 rounded-lg text-white">Go Back Home</button>
       </div>
     );
@@ -152,7 +158,7 @@ export default function Quiz() {
       <div className="flex justify-between items-center bg-slate-800/50 p-4 rounded-2xl border border-slate-700">
         <div className="flex items-center gap-4">
           <span className="text-slate-400 font-medium tracking-wide">
-            Q: <span className="text-white">{currentIndex + 1}</span> / {Math.min(questionCount, filteredQuestions.length)}
+            Q: <span className="text-white">{currentIndex + 1}</span> / {sessionDeck.length}
           </span>
           <div className="flex items-center gap-1.5 text-orange-400 font-bold bg-orange-500/10 px-3 py-1 rounded-full">
             <Flame size={18} className={currentStreak >= 3 ? "animate-pulse" : ""} />
@@ -232,7 +238,7 @@ export default function Quiz() {
               onClick={handleNext}
               className="w-full py-4 rounded-xl text-xl font-bold bg-white text-slate-900 hover:bg-slate-200 shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all"
             >
-              {currentIndex + 1 >= Math.min(questionCount, filteredQuestions.length) ? 'View Results' : 'Next Question (Enter)'}
+              {currentIndex + 1 >= sessionDeck.length ? 'View Results' : 'Next Question (Enter)'}
             </motion.button>
           )}
         </AnimatePresence>
