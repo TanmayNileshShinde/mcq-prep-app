@@ -47,7 +47,7 @@ export const useQuizStore = create<QuizState>()(
       mistakes: [],
       seenQuestionIds: [],
 
-      setSubject: (subject) => set({ selectedSubject: subject }),
+      setSubject: (subject) => set({ selectedSubject: subject, selectedUnits: [] }),
       
       toggleUnit: (unit) => set((state) => {
         const units = state.selectedUnits.includes(unit)

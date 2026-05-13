@@ -25,12 +25,24 @@ export default function Home() {
     }
   }, [error]);
 
+  // --- DYNAMIC SUBJECTS & UNITS ---
   const subjects = [
-    { name: "Emerging Trends in CE & IT", available: true },
-    { name: "Management", available: false }
+    { 
+      name: "Emerging Trends in CE & IT", 
+      available: true, 
+      units: [1, 2, 3, 4, 5] 
+    },
+    { 
+      name: "Management", 
+      available: true, // Management is now unlocked!
+      units: [1, 2, 3, 4, 5] // Adjust this array if Management has more/fewer units
+    }
   ];
   
-  const allUnits = [1, 2, 3, 4, 5];
+  // Dynamically grab the units for whichever subject is currently clicked
+  const activeSubjectData = subjects.find(sub => sub.name === selectedSubject);
+  const allUnits = activeSubjectData?.units || [];
+
   const counts = [15, 30, 50, 70];
   const timers = [{ label: "Off", value: null }, { label: "30s", value: 30 }, { label: "60s", value: 60 }];
 

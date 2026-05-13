@@ -1,4 +1,5 @@
 // src/data/questions.ts
+
 export interface Question {
   id: string;
   subject: string;
@@ -8,12 +9,26 @@ export interface Question {
   correctAnswerIndex: number;
 }
 
-// Helper function to ensure compact file size and guarantee no questions are missed due to token limits
-const q = (id: string, unit: number, text: string, options: string[], correctAnswerIndex: number): Question => ({
-  id, subject: "Emerging Trends in CE & IT", unit, text, options, correctAnswerIndex
-});
+// Automatically assigns the correct Subject name based on the ID prefix!
+const q = (id: string, unit: number, text: string, options: string[], correctAnswerIndex: number): Question => {
+  const subjectName = id.startsWith("eti") ? "Emerging Trends in CE & IT" : "Management";
+  
+  return {
+    id,
+    subject: subjectName,
+    unit,
+    text,
+    options,
+    correctAnswerIndex
+  };
+};
 
 export const questionBank: Question[] = [
+  
+  // ==========================================
+  // 💻 EMERGING TRENDS IN CE & IT (ETI)
+  // ==========================================
+  
   // UNIT 1
   q("eti_1_1",1,"Artificial Intelligence primarily aims to:",["Replace hardware","Increase internet speed","Mimic human intelligence","Store large data"],2),
   q("eti_1_2",1,"The father of Artificial Intelligence is:",["Alan Turing","Geoffrey Hinton","John McCarthy","Elon Musk"],2),
@@ -1127,5 +1142,905 @@ export const questionBank: Question[] = [
   q("eti_5_197",5,"Cyber resilience means:",["Ability to recover quickly","Printer repair","Cable replacement","OS downgrade"],0),
   q("eti_5_198",5,"Incident response plan includes:",["Detection","Containment","Recovery","All of the above"],3),
   q("eti_5_199",5,"Digital forensic investigation ends with:",["Case closure","Printer shutdown","Cable removal","OS update"],0),
-  q("eti_5_200",5,"The ultimate objective of UNIT 5 concepts is:",["Secure and legally compliant cyberspace","Printer maintenance","Cable control","OS deletion"],0)
+  q("eti_5_200",5,"The ultimate objective of UNIT 5 concepts is:",["Secure and legally compliant cyberspace","Printer maintenance","Cable control","OS deletion"],0),
+
+
+  // ==========================================
+  // 📊 MANAGEMENT (MGT)
+  // ==========================================
+ 
+  // UNIT 1: Introduction to Management
+  q("mgt_1_1",1,"Management is both a science and an art in India evolved through how many broad stages?",["Three","Four","Five","Six"],3),
+  q("mgt_1_2",1,"Which bodies in the Vedic era reflected early democratic decision-making?",["Panchayat and Nyaya","Sabha and Samiti","Sabha and Panchayat","Samiti and Nyaya"],1),
+  q("mgt_1_3",1,"Who authored the Arthashastra?",["Megasthenes","Ashoka","Kautilya Chanakya","Kalidasa"],2),
+  q("mgt_1_4",1,"A core idea from Arthashastra that mirrors modern HR is",["Job rotation","Selection by merit and training before duty","Open-book management","Profit sharing"],1),
+  q("mgt_1_5",1,"In Arthashastra, which practice ensured accountability?",["Guild formation","Trial marketing","Regular inspection and control","Outsourcing audits"],2),
+  q("mgt_1_6",1,"The ethical leadership view in Arthashastra positions the king as",["Absolute ruler","Servant of the people","Divine authority","Military commander only"],1),
+  q("mgt_1_7",1,"The Delhi Sultanates finance department was known as",["Diwan-i-Arz","Diwan-i-Wizarat","Diwan-i-Insha","Diwan-i-Riyasat"],1),
+  q("mgt_1_8",1,"Diwan-i-Arz primarily related to",["Justice","Revenue","Military","Foreign affairs"],2),
+  q("mgt_1_9",1,"Under Akbar, the system that classified officers by rank and performance was the",["Iqta system","Mansabdari system","Jagirdari system","Zamindari system"],1),
+  q("mgt_1_10",1,"Standardized land surveys and revenue rates across provinces are associated with",["Alauddin Khalji","Sher Shah Suri","Raja Todar Mal under Akbar","None of the above"],2),
+  q("mgt_1_11",1,"Which of the following is NOT a resource managed by management?",["Men","Machines","Money","Weather"],3),
+  q("mgt_1_12",1,"Which of the following best defines management in the Indian context?",["Only achieving profit margins","Getting work done through people in an organized manner","Ensuring strict hierarchical control","Administrative record-keeping"],1),
+  q("mgt_1_13",1,"What is the primary objective of management according to Arthashastra principles?",["Maximizing ruler's wealth","Ensuring societal welfare and stability","Expanding military power","Centralizing all authority"],1),
+  q("mgt_1_14",1,"The concept of 'Chakra Vijayadiniti' (Circle of Defeats) in Arthashastra relates to which management function?",["Planning","Controlling","Organizing","Staffing"],0),
+  q("mgt_1_15",1,"According to Kautilya, how many types of official misconduct require immediate action?",["Three","Five","Seven","Nine"],1),
+  q("mgt_1_16",1,"Which principle from Arthashastra emphasizes continuous assessment of employee performance?",["Delegation","Centralization","Regular inspection and evaluation","Profit sharing"],2),
+  q("mgt_1_17",1,"The Arthashastra concept of 'Raja' in management represents which role?",["Military commander","Keeper of treasury","Chief administrator responsible for organizational welfare","Judicial officer"],2),
+  q("mgt_1_18",1,"Resource management in the context of Arthashastra includes all EXCEPT:",["Personnel","Financial resources","Physical assets","Religious rituals"],3),
+  q("mgt_1_19",1,"Chanakya's concept of 'Arthavrikshti' refers to:",["Tree planting for revenue","Economic development and growth","Fortification strategies","Military expansion"],1),
+  q("mgt_1_20",1,"Which of the following was NOT part of Akbar's administrative system?",["Mansabdari","Jagirdari","Democratic voting system","Bureaucratic hierarchy"],2),
+  q("mgt_1_21",1,"The 'Diwan-i-Buyutat' was responsible for:",["Military affairs","Royal household and expenditures","Revenue collection","Foreign relations"],1),
+  q("mgt_1_22",1,"According to Arthashastra, the primary duty of management is to ensure:",["Personal wealth accumulation","Public welfare and organizational stability","Religious conformity","Military dominance"],1),
+  q("mgt_1_23",1,"The principle of 'Rajamandala' (Circle of Kings) relates to which management concept?",["Organizational hierarchy","Strategic alliances and competitive analysis","Geographical boundaries","Religious organization"],1),
+  q("mgt_1_24",1,"Which administrative department in the Delhi Sultanate was specifically for investigating corruption?",["Diwan-i-Khairat","Amir-i-Akhur","Diwan-i-Istikhraji","Diwan-i-Jumla"],2),
+  q("mgt_1_25",1,"The concept of 'Pariksha' (testing/inspection) in Arthashastra emphasizes:",["Military drills","Continuous monitoring and evaluation of officials","Religious ceremonies","Trade negotiations"],1),
+  q("mgt_1_26",1,"Kautilya identified eight sources of state income, one of which is:",["Religious taxation","Periodic taxation on business","Forced donations","None of the above"],1),
+  q("mgt_1_27",1,"The 'Manthriparishad' (Council of Ministers) in Arthashastra was designed for:",["Ceremonial purposes only","Collective decision-making and policy advice","Military command","Religious guidance"],1),
+  q("mgt_1_28",1,"Which concept from Arthashastra directly relates to modern stakeholder management?",["Autocratic rule","Welfare of all segments of society","Monopolistic control","Hereditary leadership"],1),
+  q("mgt_1_29",1,"Sher Shah Suri's administrative reforms included:",["Abolishing the postal system","Establishing an efficient road and communication system","Eliminating tax collection","Decentralizing all authority"],1),
+  q("mgt_1_30",1,"The principle of 'Dharma' in Arthashastra management means:",["Religious ritual","Ethical duty and righteous responsibility","Military conquest","Economic profit"],1),
+  q("mgt_1_31",1,"Which of these best exemplifies the Arthashastra concept of organizational integrity?",["Centralized power in one person","Checks and balances with accountability at all levels","Elimination of bureaucracy","Hereditary succession only"],1),
+  q("mgt_1_32",1,"The 'Rajasthaniyas' in medieval Indian administration were:",["Royal messengers and administrators","Military generals","Religious advisors","Merchant guild leaders"],0),
+  q("mgt_1_33",1,"According to Arthashastra, which characteristic is essential for effective organizational performance?",["Secrecy in all matters","Transparency in governance and accountability","Elimination of formal roles","Arbitrary decision-making"],1),
+  q("mgt_1_34",1,"The 'Muhtasib' system introduced by various sultanates was primarily for:",["Tax farming","Market regulation and prevention of fraud","Military conscription","None of the above"],1),
+  q("mgt_1_35",1,"In Kautilya's framework, what is the measure of state prosperity?",["Religious merit","Material prosperity and economic well-being","Political power alone","Military strength"],1),
+  q("mgt_1_36",1,"The practice of 'Dastur-i-Amalgozan' in Sultanate administration meant:",["Religious code","Standard operating procedures and administrative manuals","Military handbook","Trade agreements"],1),
+  q("mgt_1_37",1,"Which principle from Arthashastra emphasizes the importance of employee motivation?",["Punishment alone","Combination of rewards and penalties","Extreme poverty promotion","Hereditary roles"],1),
+  q("mgt_1_38",1,"The 'Sarais' (rest houses) built during Sultanate period served which management objective?",["Military purposes only","Infrastructure development and facilitating trade and communication","Religious ceremonies","Entertaining nobility"],1),
+  q("mgt_1_39",1,"What qualities does Kautilya consider essential for a king's administration?",["Unlimited personal authority","Knowledge, integrity, and dedication to public welfare","Ability to accumulate personal wealth","Military expertise only"],1),
+  q("mgt_1_40",1,"The 'Chakravarthi' concept in Indian management philosophy represents:",["A military leader","A universal ruler who maintains ethical governance","A religious authority","A merchant prince"],1),
+  q("mgt_1_41",1,"Akbar's 'Sulh-i-Kul' (universal tolerance) policy was essentially a:",["Military strategy","Management principle promoting inclusive governance","Religious doctrine","Economic system"],1),
+  q("mgt_1_42",1,"The principle of 'Arti Jnana' (knowledge of finances) in Arthashastra emphasizes:",["Secrecy in financial matters","Transparent financial management and accountability","Personal accumulation","None of the above"],1),
+  q("mgt_1_43",1,"Which administrative innovation by Akbar directly improved governance efficiency?",["Abandoning written records","Implementing Mansabdari system with standardized ranks and salaries","Eliminating all advisors","Reducing bureaucratic levels"],1),
+  q("mgt_1_44",1,"The 'Tirthas' in Arthashastra's administrative hierarchy were:",["Religious priests","Highest category of officials responsible for major functions","Military officers","Merchant representatives"],1),
+  q("mgt_1_45",1,"Kautilya's emphasis on 'Pramana' (proof and verification) reflects which modern management concept?",["Autocratic decision-making","Evidence-based decision-making and quality control","Random selection","Intuitive management"],1),
+  q("mgt_1_46",1,"Which administrative function is most emphasized in Arthashastra for state stability?",["Control military only","Manage state finances, resources, and warehouses","Perform religious ceremonies","Oversee judicial matters"],1),
+  q("mgt_1_47",1,"In Kautilya's framework, 'Naya' (policy/strategy) is best described as:",["Rigid adherence to fixed rules and regulations","Flexible application of strategies based on circumstances and opportunities","Only political and military considerations","Economic policies focused only on wealth accumulation"],1),
+  q("mgt_1_48",1,"According to Kautilya, the primary duty of a 'Mantri' (minister) is to:",["Accumulate personal wealth and power through manipulation","Advise the king wisely and serve state interests above personal gains","Control military forces and ignore administrative duties","Maintain diplomatic relations without influencing policy decisions"],1),
+  q("mgt_1_49",1,"The concept of 'Saptanga' (seven limbs) in Arthashastra refers to:",["The seven stages of human development","Seven essential elements of state: king, minister, territory, treasury, army, ally, and enemy","Seven religious practices mandated by Vedic tradition","Seven branches of military science and warfare"],1),
+  q("mgt_1_50",1,"The concept of 'Abhaya' (fearlessness) in Arthashastra emphasizes:",["The absolute power of the king without any accountability","The people's freedom from fear, anxiety, and tyranny through just governance","The elimination of all military threats and external enemies","None of the above"],1),
+  q("mgt_1_51",1,"Changing government policies require managers to",["Stay rigid","Adjust to new laws and regulations","Ignore compliance","Resist taxation"],1),
+  q("mgt_1_52",1,"Communication barriers affect management by",["Improving co-ordination","Ensuring clear information flow","Disturbing smooth flow of information","Enhancing teamwork"],2),
+  q("mgt_1_53",1,"Crisis management refers to",["Handling normal operations only","Ignoring emergency problems","Dealing with unexpected events like strikes or disasters","Avoiding decision-making"],2),
+  q("mgt_1_54",1,"Who is known as the Father of Scientific Management?",["Henry Fayol","Peter Drucker","F.W. Taylor","Elton Mayo"],2),
+  q("mgt_1_55",1,"Scientific Management is mainly concerned with",["Personal opinions and traditions","Scientific study and standardization of work","Political decision-making","Financial accounting"],1),
+  q("mgt_1_56",1,"Resource management challenge means",["Wasting resources intentionally","Balancing limited time, money and manpower","Ignoring financial planning","Using resources carelessly"],1),
+  q("mgt_1_57",1,"The main objective of Scientific Management is",["Maximum profit for management only","Reduction in employee wages","Increase in efficiency and productivity","Manual labor without planning"],2),
+  q("mgt_1_58",1,"Ethical issues in management involve",["Dishonesty and corruption","Maintaining honesty, transparency and social responsibility","Avoiding accountability","None of the above"],1),
+  q("mgt_1_59",1,"F.W. Taylor introduced his ideas during which period?",["Late 18th century","Early 20th century","Mid-19th century","Late 20th century"],1),
+  q("mgt_1_60",1,"Scientific Management emphasizes",["Trial and error methods","Random decision-making","The one best way to do a job","Ignoring workers opinions"],2),
+  q("mgt_1_61",1,"Which of the following is not a principle of Scientific Management?",["Science, not Rule of Thumb","Harmony, not Discord","Co-operation, not Individualism","Profit Maximization only"],3),
+  q("mgt_1_62",1,"Taylor suggested replacing Rule of Thumb with",["Personal judgment","Scientific analysis and study","Worker intuition","Common sense"],1),
+  q("mgt_1_63",1,"Time study, motion study and work study are used to",["Increase conflicts","Find the most efficient method of doing work","Reduce the number of workers","Avoid supervision"],1),
+  q("mgt_1_64",1,"The principle Harmony, not Discord emphasizes",["Conflict between labor and management","Mutual co-operation and unity","Strict control and punishment","Working individually"],1),
+  q("mgt_1_65",1,"According to Taylor, success in management depends on",["Mutual co-operation between workers and management","Competition among workers","Strict supervision only","Firing underperformers"],0),
+  q("mgt_1_66",1,"The idea Co-operation, not Individualism means",["Workers should work independently","Both management and workers should work as partners","Management should work alone","None of the above"],1),
+  q("mgt_1_67",1,"Which of the following helps build trust and reduce disputes?",["Exploiting workers","Sharing profits and incentives","Ignoring complaints","Increasing working hours"],1),
+  q("mgt_1_68",1,"Taylor believed that workers should be trained",["Informally by senior employees","Through a systematic scientific method","Without supervision","Only when mistakes occur"],1),
+  q("mgt_1_69",1,"Development of each worker to his greatest efficiency means",["Giving promotions only to seniors","Selecting and training the right person for the right job","Hiring untrained workers","Ignoring worker growth"],1),
+  q("mgt_1_70",1,"Which of the following best describes Taylor's overall goal?",["Reduce cost and increase efficiency for both management and workers","Focus on profits only","Promote individualism","Avoid worker participation"],0),
+  q("mgt_1_71",1,"Henry Fayol is known as the",["Father of Scientific Management","Father of Modern Management","Father of Psychology","Father of Quality Control"],1),
+  q("mgt_1_72",1,"The main difference between Taylor and Fayol is that",["Taylor focused on factory operations, Fayol on overall administration","Both focused only on workers","Fayol was against planning","Taylor ignored productivity"],0),
+  q("mgt_1_73",1,"Taylor's approach is mainly applicable at",["Top management level","Middle management","Shop-floor or supervisory level","Corporate planning level"],2),
+  q("mgt_1_74",1,"Fayol's management ideas are mainly useful for",["Laborers only","Entire organization management","Manual workers","None of these"],1),
+  q("mgt_1_75",1,"The principle Harmony, not Discord aims to replace",["Co-operation with conflict","Us versus them attitude with teamwork","Scientific study with personal judgment","Rewards with punishments"],1),
+  q("mgt_1_76",1,"Self-management means",["Managing others work","Taking responsibility for one's own emotions and time","Delegating tasks to subordinates","Avoiding personal decisions"],1),
+  q("mgt_1_77",1,"The foundation of self-management is",["Self-discipline","Self-awareness","Time management","Stress management"],0),
+  q("mgt_1_78",1,"A self-aware person",["Ignores emotions","Understands strengths, weaknesses and feelings","Depends on others for feedback","Avoids self-reflection"],1),
+  q("mgt_1_79",1,"Which method helps to improve self-awareness?",["Watching television","Maintaining a daily self-reflection journal","Avoiding feedback","Ignoring mistakes"],1),
+  q("mgt_1_80",1,"Self-discipline means",["Controlling impulses to stay focused on goals","Acting without thinking","Avoiding commitments","Doing tasks randomly"],0),
+  q("mgt_1_81",1,"The bridge between goals and achievement is",["Motivation","Discipline","Luck","Co-operation"],1),
+  q("mgt_1_82",1,"Self-disciplined people are known for",["Laziness and delay","Consistency and punctuality","Carelessness","None of the above"],1),
+  q("mgt_1_83",1,"Which is not a way to improve self discipline?",["Avoiding procrastination","Rewarding yourself for timely work","Ignoring your schedule","Making a daily routine"],2),
+  q("mgt_1_84",1,"Self-motivation means",["Relying on others for encouragement","Working only under supervision","Having an inner drive to achieve goals","Avoiding responsibility"],2),
+  q("mgt_1_85",1,"Motivation that comes from internal satisfaction is called",["Extrinsic motivation","Intrinsic motivation","External motivation","Indirect motivation"],1),
+  q("mgt_1_86",1,"Example of self-motivation is",["Studying only when forced by parents","Preparing daily for an exam inspired by a dream career","Quitting after one failure","Avoiding competition"],1),
+  q("mgt_1_87",1,"The SMART principle in goal setting means",["Strong, Moral, Active, Real, Timely","Specific, Measurable, Achievable, Relevant, Time-bound","Simple, Motivated, Accurate, Reliable, Tough","Sharp, Major, Available, Realistic, Targeted"],1),
+  q("mgt_1_88",1,"Esprit de corps refers to",["Individual competition","Formal hierarchy","Chain of command","Team spirit and unity"],3),
+  q("mgt_1_89",1,"Functional organization is also called as",["Line organization","Staff organization","Project organization","None of the above"],1),
+  q("mgt_1_90",1,"Which is the correct advantage of staff organization",["Performance better than line","Standardization in process","More productivity than line","All of the above"],3),
+  q("mgt_1_91",1,"Which is a good time-management practice?",["Avoiding planning","Using a daily or weekly schedule","Doing urgent work last","Ignoring priorities"],1),
+  q("mgt_1_92",1,"The most valuable, non-renewable resource is",["Money","Time","Technology","Energy"],1),
+  q("mgt_1_93",1,"A good decision maker is ____",["Emotional and confused","Logical, confident and responsible","Dependent on others","Hesitant and fearful"],1),
+  q("mgt_1_94",1,"The first step in decision-making is",["Implement the choice immediately","Identify the problem","Ask for random opinions","Evaluate all options first"],1),
+  q("mgt_1_95",1,"Example of decision-making ____",["Choosing a career branch based on aptitude and demand","Copying others choices","Avoiding decisions","Acting without thinking"],0),
+  q("mgt_1_96",1,"Which of these helps improve decision-making?",["Acting emotionally","Learning from past experiences","Ignoring advice","Avoiding responsibility"],1),
+  q("mgt_1_97",1,"Stress management means ____",["Avoiding all work pressure","Handling stress calmly and positively","Ignoring emotional health","Increasing anxiety intentionally"],1),
+  q("mgt_1_98",1,"Positive stress that motivates is called ____",["Distress","Eustress","Overstress","None of the above"],1),
+  q("mgt_1_99",1,"Which of the following helps reduce stress?",["Overthinking","Regular exercise or meditation","Skipping rest","Avoiding friends and family"],1),
+  q("mgt_1_100",1,"Example of stress management ____",["Taking a 10-minute relaxation break during study sessions","Working continuously without rest","Ignoring problems","Complaining constantly"],0),
+  q("mgt_1_101",1,"Work-life balance means ____",["Giving priority only to work","Managing professional and personal life effectively","Ignoring family responsibilities","Working without breaks"],1),
+  q("mgt_1_102",1,"Maintaining work-life balance helps to ____",["Increase burnout","Improve happiness and performance","Reduce productivity","Eliminate teamwork"],1),
+  q("mgt_1_103",1,"Which practice helps in maintaining work-life balance?",["Taking work everywhere","Prioritizing rest, hobbies and family time","Ignoring personal needs","Working 24/7"],1),
+  q("mgt_1_104",1,"Multitasking means",["Doing one task at a time","Performing several activities efficiently at once","Avoiding difficult work","Working carelessly"],1),
+  q("mgt_1_105",1,"Smart multitasking involves",["Doing everything simultaneously without focus","Combining similar tasks efficiently without losing quality","Constantly checking the phone while studying","Ignoring priorities"],1),
+  q("mgt_1_106",1,"Management aims at achieving",["Individual satisfaction only","Undefined objectives","Specific organizational goals efficiently","None of the above"],2),
+  q("mgt_1_107",1,"The main objective of management is to",["Waste resources","Achieve goals efficiently and effectively","Create conflicts among departments","Avoid teamwork"],1),
+  q("mgt_1_108",1,"The term 'Universal Application' in management means",["Management applies only to business organizations","Management applies to all types of organizations","Management is limited to top executives","Management principles change completely in each field"],1),
+  q("mgt_1_109",1,"Management is considered a continuous process because",["It is done once a year","It involves ongoing planning, implementation and evaluation","It stops after goals are achieved","It applies only during crises"],1),
+  q("mgt_1_110",1,"Management is a group activity because",["It is performed by one individual","It requires teamwork and co-ordination among people","It depends only on machines","It excludes employee participation"],1),
+  q("mgt_1_111",1,"Marketing information is not needed by a marketer",["True","False","Sometimes","None of the above"],1),
+  q("mgt_1_112",1,"Sole proprietorship is one man business unit with unlimited liability.",["True","False","Can't say","None of the above"],0),
+  q("mgt_1_113",1,"A middleman is one who acts as a link between the producers and consumers",["Producer","Consumer","Link between producer and consumer","None of the above"],2),
+  q("mgt_1_114",1,"Entrepreneurship is an art of starting new enterprise",["Art","Science","Art and Science","None of the above"],2),
+  q("mgt_1_115",1,"Qualities of entrepreneurs include confidence, leadership, ability to take risk",["Vision","Communication","Motivation","All of the above"],3),
+  q("mgt_1_116",1,"A sole proprietor is defined as one who owns and manages his business",["Government","Business","Individual","Family"],2),
+  q("mgt_1_117",1,"Management is the ___________ of utilizing available resources and directing them towards achieving organizational goals",["Art and Science","Function","Process","All of the above"],2),
+  q("mgt_1_118",1,"Management is both a science and an art because",["It has systematic knowledge and requires creativity","It is only theoretical","It is only practical experience","It does not involve human skills"],0),
+  q("mgt_1_119",1,"Modern management is considered a profession",["It requires no education","It requires specialized knowledge, ethics and competence","It is based on luck","It avoids responsibility"],1),
+  q("mgt_1_120",1,"Which of the following best summarizes the nature of management?",["Static and rigid activity","One-time personal effort","Continuous, goal-oriented and group activity","Irregular and unorganized activity"],2),
+  q("mgt_1_121",1,"The main purpose of management is to",["Increase conflict","Achieve goals efficiently and effectively","Reduce productivity","Avoid supervision"],1),
+  q("mgt_1_122",1,"The key steps in organizing are",["Forecasting and budgeting","Identifying activities, assigning tasks and delegating authority","Training and development","None of the above"],1),
+  q("mgt_1_123",1,"The main aim of organizing is to",["Bring clarity in roles and create structure","Increase confusion among workers","Avoid communication","Promote competition among departments"],0),
+  q("mgt_1_124",1,"In short, organizing can be described as",["The art of motivation","Turning plans into action by building a working structure","Measuring performance","Hiring new employees"],1),
+  q("mgt_1_125",1,"Staffing deals mainly with",["Machines and materials","Recruitment, selection and development of people","Supervision only","Financial management"],1),
+  q("mgt_1_126",1,"Staffing ensures",["Maximum confusion","Skilled and motivated workforce","Poor communication","Low morale"],1),
+  q("mgt_1_127",1,"The slogan Right person in the right job relates to",["Planning","Staffing","Controlling","Directing"],1),
+  q("mgt_1_128",1,"Which of the following is not a part of staffing?",["Recruitment","Training","Performance appraisal","Budget planning"],3),
+  q("mgt_1_129",1,"Directing means",["Planning work schedules","Guiding, leading and motivating employees","Arranging resources","Comparing results"],1),
+  q("mgt_1_130",1,"The elements of directing include",["Planning and control","Leadership, supervision, motivation, communication","Delegation and co-ordination","None of the above"],1),
+  q("mgt_1_131",1,"The function that converts plans into performance is",["Staffing","Directing","Organizing","Controlling"],1),
+  q("mgt_1_132",1,"The main aim of directing is to",["Create conflict","Inspire and guide employees toward goals","Enforce strict punishment","Avoid communication"],1),
+  q("mgt_1_133",1,"Controlling ensures",["Deviation from goals","Monitoring and comparing actual performance with standards","Avoiding measurement of work","Increasing mistakes"],1),
+  q("mgt_1_134",1,"The last step in the controlling process is",["Setting standards","Measuring performance","Taking corrective actions","Planning again"],2),
+  q("mgt_1_135",1,"The importance of controlling lies in",["Increasing errors","Ensuring goals are achieved efficiently","Reducing supervision","Ignoring feedback"],1),
+  q("mgt_1_136",1,"The first step in the controlling process is",["Measuring performance","Setting performance standards","Taking corrective action","Evaluating results"],1),
+  q("mgt_1_137",1,"Co-ordination in management means",["Working independently","Harmonizing efforts of individuals and departments","Creating competition between teams","Dividing employees into groups"],1),
+  q("mgt_1_138",1,"Co-ordination is called the 'essence of management' because",["It is a separate function","It runs through all other functions","It replaces all functions","None of the above"],1),
+  q("mgt_1_139",1,"Co-ordination helps in",["Duplicating efforts","Avoiding teamwork","Ensuring unity of direction and teamwork","Reducing communication"],2),
+  q("mgt_1_140",1,"Example of controlling in management is",["Planning a new product","Comparing monthly sales with targets","Recruiting new employees","Giving training to workers"],1),
+  q("mgt_1_141",1,"Example of directing is",["A manager motivating his team to finish a project","Preparing an annual budget","Hiring a new accountant","Buying new machines"],0),
+  q("mgt_1_142",1,"Which function is related to deciding what to do, when and how?",["Staffing","Planning","Directing","Controlling"],1),
+  q("mgt_1_143",1,"The function that builds the organization's structure is",["Organizing","Staffing","Planning","Controlling"],0),
+  q("mgt_1_144",1,"The function that measures performance and corrects deviations is",["Directing","Staffing","Controlling","Planning"],2),
+  q("mgt_1_145",1,"The relationship among all functions of management can be described as",["Independent and random","Interrelated and continuous","Separate and unrelated","Fixed and unchangeable"],1),
+  q("mgt_1_146",1,"Which of the following is a major challenge due to globalization?",["Working only in local markets","Competing in international markets and managing cross-cultural teams","Ignoring foreign customers","None of the above"],1),
+  q("mgt_1_147",1,"Technological changes in management require",["Avoiding digital tools","Adapting to innovations like automation and AI","Reducing the use of technology","Depending only on manual systems"],1),
+  q("mgt_1_148",1,"Maintaining honesty, transparency and social responsibility in business relates to",["Ethical issues","Government policy","Globalization","Crisis management"],0),
+  q("mgt_1_149",1,"Managing limited time, money and manpower effectively is a challenge of",["Motivation","Resource management","Communication","Competition"],1),
+  q("mgt_1_150",1,"Handling unexpected problems like strikes, market failures or disasters is called",["Crisis management","Resource planning","Employee motivation","Policy formulation"],0),
+  q("mgt_1_151",1,"How many main levels of management are there in an organization?",["One","Two","Three","Four"],2),
+  q("mgt_1_152",1,"The three levels of management are",["Top, Middle and Supervisory","High, Medium and Low","Senior, Junior and Trainee","Administrative, Operational and Worker"],0),
+  q("mgt_1_153",1,"The top-level management mainly focuses on",["Day-to-day operations","Policy making and long-term planning","Training workers","Supervising production"],1),
+  q("mgt_1_154",1,"Which of the following positions belongs to the top level of management?",["Supervisor","Foreman","Managing Director","None of these"],2),
+  q("mgt_1_155",1,"Middle-level management acts as a link between",["Workers and customers","Top-level and lower-level management","Employees and suppliers","Directors and shareholders"],1),
+  q("mgt_1_156",1,"Departmental heads and branch managers are part of",["Top management","Middle management","Lower management","None of these"],1),
+  q("mgt_1_157",1,"Supervisory or lower-level management is also known as",["Administrative management","Operational management","Executive management","Strategic management"],1),
+  q("mgt_1_158",1,"The main function of top-level management is to",["Prepare strategic plans and company policies","Supervise workers directly","Maintain machinery","Handle routine paperwork"],0),
+  q("mgt_1_159",1,"The middle-level management mainly performs the function of",["Executing policies and co-ordinating between top and lower levels","Making national policies","Financial auditing","Recruiting directors"],0),
+  q("mgt_1_160",1,"The lower-level management is responsible for",["Setting company objectives","Policy framing","Implementing plans and supervising workers","Creating budgets"],2),
+  q("mgt_1_161",1,"Which level of management deals most closely with employees or workers?",["Top level","Middle level","Lower or Supervisory level","Strategic level"],2),
+  q("mgt_1_162",1,"The top-level management is also called",["Functional management","Strategic or Administrative management","Operational management","None of the above"],1),
+  q("mgt_1_163",1,"Middle-level managers perform which key role?",["Translating top-level goals into departmental plans","Framing company vision","Supervising workers directly","Approving government policies"],0),
+  q("mgt_1_164",1,"Supervisors and foremen mainly perform which function?",["Policy making","Controlling and directing day-to-day operations","Budget forecasting","External relations"],1),
+  q("mgt_1_165",1,"The correct order of management levels from top to bottom is",["Supervisory → Middle → Top","Top → Supervisory → Middle","Top → Middle → Supervisory","Middle → Top → Supervisory"],2),
+  q("mgt_1_166",1,"Negotiation means",["Forcing others to accept your decision","A discussion to reach a mutually beneficial agreement","Avoiding communication with others","Arguing until one party gives up"],1),
+  q("mgt_1_167",1,"The main goal of negotiation is to achieve a",["Win-lose situation","One-sided agreement","Win-win outcome","Quick decision without discussion"],2),
+  q("mgt_1_168",1,"Which of the following is the first step in the negotiation process?",["Bargaining","Agreement","Preparation","Implementation"],2),
+  q("mgt_1_169",1,"In negotiation, BATNA stands for",["Best Alternative to a Negotiated Agreement","Basic Action for Team Negotiation Approach","Business Agreement through New Alternatives","Better Arrangement for Team Negotiation Agreement"],0),
+  q("mgt_1_170",1,"The 'Exchange of Information' step in negotiation involves",["Keeping all data secret","Presenting arguments logically and politely","Ignoring others' opinions","None of the above"],1),
+  q("mgt_1_171",1,"Which quality is most essential for a good negotiator?",["Impatience","Aggressiveness","Listening skills","Overconfidence"],2),
+  q("mgt_1_172",1,"Which of the following is not a quality of a good negotiator?",["Integrity","Emotional control","Dishonesty","Problem-solving attitude"],2),
+  q("mgt_1_173",1,"The final step in the negotiation process is",["Implementation and Review","Opening the Discussion","Preparation","Bargaining"],0),
+  q("mgt_1_174",1,"A production manager negotiating with a supplier is an example of",["Conflict Resolution","Team Building","Negotiation Skill","Feedback"],2),
+  q("mgt_1_175",1,"One major benefit of negotiation for managers is",["Increased conflict","Better decision-making and co-operation","Poor communication","Reduced productivity"],1),
+  q("mgt_1_176",1,"Team management means",["Working alone for quick decisions","Organizing and guiding a group to achieve common goals","Avoiding delegation","Supervising without communication"],1),
+  q("mgt_1_177",1,"A well-managed team leads to",["Confusion and delay","Higher productivity and co-operation","More conflicts","Individual dominance"],1),
+  q("mgt_1_178",1,"Which of the following is not a benefit of team management?",["Promotes unity","Improves morale","Increases misunderstandings","Ensures coordination"],2),
+  q("mgt_1_179",1,"The key element of team management that ensures everyone knows their tasks is",["Role Clarity","Avoidance","Control","Conflict"],0),
+  q("mgt_1_180",1,"Strong leadership in a team means",["Forcing members to obey","Guiding, inspiring and resolving conflicts fairly","Working without goals","Ignoring team inputs"],1),
+  q("mgt_1_181",1,"Effective communication in teams helps to",["Create confusion","Increase delays","Ensure co-ordination and transparency","Reduce interaction"],2),
+  q("mgt_1_182",1,"Which of the following qualities is important for a good team manager?",["Dictatorship","Empathy and decision-making ability","Avoiding delegation","Ignoring conflicts"],1),
+  q("mgt_1_183",1,"Rewarding and appreciating team members' performance",["Decreases motivation","Boosts morale and teamwork","Creates jealousy","Wastes time"],1),
+  q("mgt_1_184",1,"Which element ensures that team goals are achieved efficiently?",["Competition","Collective effort and co-ordination","Isolation","Individualism"],1),
+  q("mgt_1_185",1,"A project manager co-ordinating engineers and designers is showing",["Conflict Management","Team Management Skills","Feedback Skills","Negotiation Skills"],1),
+  q("mgt_1_186",1,"Conflict resolution means",["Avoiding differences","Finding a peaceful solution to disagreements","Encouraging fights among teams","None of the above"],1),
+  q("mgt_1_187",1,"A common cause of workplace conflict is",["Poor communication","Clear goals","Team unity","Proper planning"],0),
+  q("mgt_1_188",1,"Conflict resolution helps managers to",["Reduce cooperation","Maintain harmony and productivity","Increase stress","Avoid communication"],1),
+  q("mgt_1_189",1,"The first step in the conflict resolution process is",["Find common ground","Identify the source of conflict","Develop possible solutions","Follow up"],1),
+  q("mgt_1_190",1,"When both parties give up something to reach a middle ground, it is called",["Collaboration","Compromise","Competition","Avoidance"],1),
+  q("mgt_1_191",1,"The technique that creates a win-win situation is",["Collaboration","Accommodation","Avoidance","Competition"],0),
+  q("mgt_1_192",1,"A good conflict resolver should be",["Impatient and biased","Fair, patient and a good listener","Aggressive and emotional","Avoidant and defensive"],1),
+  q("mgt_1_193",1,"An HR manager settling a dispute between employees is practicing",["Feedback","Conflict Resolution","Negotiation","Supervision"],1),
+  q("mgt_1_194",1,"Feedback is the process of",["Criticizing others harshly","Sharing information about performance for improvement","Avoiding discussions about work","None of the above"],1),
+  q("mgt_1_195",1,"Effective feedback should be",["Late and emotional","Timely, specific and respectful","Harsh and vague","Ignored by the receiver"],1),
+
+
+  // UNIT 2: Project, Operations and Project Management
+  q("mgt_2_1",2,"Creativity primarily refers to ____",["Implementing ideas in the market","Generating new and original ideas","Reducing product costs only","Advertising a product"],1),
+  q("mgt_2_2",2,"According to Torrance (1974), creativity involves all EXCEPT ____",["Sensing problems or gaps","Testing hypotheses","Communicating results","Fixing selling price"],3),
+  q("mgt_2_3",2,"Which is NOT a characteristic of creative thinking?",["Originality","Flexibility","Curiosity","Rigidity"],3),
+  q("mgt_2_4",2,"Innovation at best means ____",["Daydreaming new possibilities","Implementing creative ideas into value-adding outcomes","Collecting customer complaints","Copying existing solutions"],1),
+  q("mgt_2_5",2,"Peter Drucker called innovation the instrument of ____",["Finance","Production","Entrepreneurship","Marketing"],2),
+  q("mgt_2_6",2,"Example of innovation from the content ____",["Sketching a concept car","Turning EVs idea into production cars","Reading about AI","Using leaked iPad phones"],1),
+  q("mgt_2_7",2,"Which point is NOT listed as an important creativity/innovation in management ____",["Product development","Improved productivity","Competitive advantage","Increased taxation"],3),
+  q("mgt_2_8",2,"A common barrier to creativity and innovation is ____",["Management support","Failure","Long-term focus","Teamwork"],1),
+  q("mgt_2_9",2,"A manager's role in innovation includes ____",["Punishing new instincts","Blocking communication","Linking innovation to goals and rewards","Eliminating collaboration"],2),
+  q("mgt_2_10",2,"Creativity techniques are used mainly to ____",["Enforce strict rules","Think differently and generate useful ideas","Replace teamwork","Eliminate imagination"],1),
+  q("mgt_2_11",2,"Who developed Brainstorming?",["Edward de Bono","Fritz Zwicky","Alex Osborn","Tony Buzan"],2),
+  q("mgt_2_12",2,"Which is a core rule of brainstorming?",["Criticize bad ideas immediately","Limit quantity of ideas","Encourage unusual ideas","Keep ideas secret"],2),
+  q("mgt_2_13",2,"A listed limitation of brainstorming is ____",["Always ensures focus","Groupthink can reduce independent thinking","Guarantees high-quality ideas only","Eliminates evaluation time"],1),
+  q("mgt_2_14",2,"Checklist technique mainly uses ____",["Random selection of ideas","Standard 'idea-spurring' questions","Secret voting","Only numerical analysis"],1),
+  q("mgt_2_15",2,"Which pair belongs to Osborn's checklist?",["Synthesize","Put to other uses - Reverse","Adapt - Benchmark","Combine - Compare"],1),
+  q("mgt_2_16",2,"Reverse Brainstorming primarily by asking ____",["How to cause or worsen the problem?","What is the best idea?","How to avoid any ideas?","What to increase for brainstorming?"],0),
+  q("mgt_2_17",2,"Correct sequence → Reverse Brainstorming ____",["Reverse question → Generate negative ideas → Reverse problem → Select solutions → Pick a problem → Celebrate","Pick a problem → Reverse problem → Generate negative ideas → Reverse solutions → Select solutions","Evaluate first → Collect negative ideas → Define problem","Assign tasks → Punish errors → Archive"],1),
+  q("mgt_2_18",2,"First step in Morphological Analysis ____",["Create ads","Define problem clearly","Set selling price","Conduct brand survey only"],1),
+  q("mgt_2_19",2,"End step in Morphological Analysis ____",["Peter Drucker","Fritz Zwicky","Alex Osborn","Tony Buzan"],1),
+  q("mgt_2_20",2,"In Six Thinking Hats, which hat is for facts and data?",["Red","White","Yellow","Green"],1),
+  q("mgt_2_21",2,"In Six Thinking Hats, which hat focuses on ____",["Emotions","Risks and cautions","Creativity","Process control"],1),
+  q("mgt_2_22",2,"In Six Thinking Hats, the Blue Hat mainly handles ____",["Feelings","Benefits","Process control and next steps","Data"],2),
+  q("mgt_2_23",2,"Mind Mapping primarily helps to ____",["Replace teamwork","Visualize relationships around a central idea","Decide salaries","Enforce rigid procedures"],1),
+  q("mgt_2_24",2,"In SCAMPER, 'P' stands for ____",["Expand","Estimate","Eliminate","Put to other uses"],3),
+  q("mgt_2_25",2,"Brain writing differs from brainstorming because it ____",["Is done silently in writing to avoid dominance","Requires constant speaking","Allows criticism during idea entry","Uses only digital tools"],0),
+  q("mgt_2_26",2,"New Product Development (NPD) primarily means ____",["Cutting costs in production only","Turning new ideas into marketable products","Advertising existing products","Outsourcing manufacturing"],1),
+  q("mgt_2_27",2,"Which stage is NOT typically part of NPD?",["Idea generation","Concept testing","Product launch","Unplanned buy out"],3),
+  q("mgt_2_28",2,"A core aim of NPD is to create products that are ____",["Innovative, useful and profitable","Expensive and exclusive only","Hard to copy and legally risky","Produced without customer input"],0),
+  q("mgt_2_29",2,"Which is a key need for NPD?",["Stable customer preferences","Lack of competition","Technological advancements","Unlimited resources"],2),
+  q("mgt_2_30",2,"NPD supports growth by ____",["Replacing obsolete products","Reducing staff benefits","Avoiding market expansion","Following trends"],0),
+  q("mgt_2_31",2,"Which of the following improves brand image via NPD?",["Frequent product recalls","Launching creative, customer-valued products","Cutting after-sales support","Hiding environmental impacts"],1),
+  q("mgt_2_32",2,"Which point relates to legal/environmental drivers of NPD?",["Copying competitors' designs","Meeting safety and regulatory regulations","Increasing packaging layers","Reducing product lifetime deliberately"],1),
+  q("mgt_2_33",2,"Product Management mainly involves ____",["Only pricing decisions","Planning, developing, launching and managing a product across its life cycle","HR and design","Internal auditing and taxes"],1),
+  q("mgt_2_34",2,"Product Management requires co-ordination primarily among",["Only marketing and sales","Design, production, finance, marketing and sales","Legal and taxation only","Vendors only"],1),
+  q("mgt_2_35",2,"Change Management focuses on ____",["Avoiding change","Planning, implementing and monitoring change with minimal resistance","Punishing resistors","Outsourcing all operations"],1),
+  q("mgt_2_36",2,"Which is NOT a listed type of organizational change?",["Strategic change","Structural change","Culinary change","People-centric change"],2),
+  q("mgt_2_37",2,"A good first step in the Change Management process is to ____",["Ignore resistors","Recognize the need for change","Downsize staff","Ignore communication"],1),
+  q("mgt_2_38",2,"A common barrier to change is ____",["Clear leadership vision","Employee resistance or insecurity","Adequate resources","Effective training"],1),
+  q("mgt_2_39",2,"Which technique helps overcome resistance to change?",["Hiding information","Effective communication and participation","Eliminating training","Delaying feedback"],1),
+  q("mgt_2_40",2,"A key advantage of Change Management is ____",["More disruption","Lower employee morale","Faster achievement of organizational goals","Increased confusion"],2),
+  q("mgt_2_41",2,"Sustainable product design primarily aims to ____",["Maximize short-term profits only","Meet needs while minimizing environmental impact","Use the cheapest materials regardless of impact","Increase packaging weight"],1),
+  q("mgt_2_42",2,"Which is an example of material selection for sustainability?",["Toxic paints","Virgin plastics only","Bamboo or recycled metals","Lead-based solder in all products"],2),
+  q("mgt_2_43",2,"Design for energy efficiency means ____",["Adding power-hungry features","Reducing use of energy in manufacturing process","Ignoring water consumption","Extending process times"],1),
+  q("mgt_2_44",2,"Designing for durability and reuse typically includes ____",["Non-repairable construction","Modular designs and replaceable parts","Gluing all components permanently","Single-use materials"],1),
+  q("mgt_2_45",2,"A step that reduces environmental impact of packaging is to ____",["Use unnecessary layers","Prefer lightweight, recyclable materials","Print heavy inks excessively","Use mixed, non-recyclable laminates"],1),
+  q("mgt_2_46",2,"End-of-life planning in sustainable design involves ____",["Making disassembly difficult","Designing for easy recycling and take-back","Ignoring waste streams","Banning disassembly"],1),
+  q("mgt_2_47",2,"A listed economic benefit of sustainable design is ____",["Guaranteed higher costs","Cost savings via energy-efficient processes","Reduced market demand","Higher carbon taxes"],1),
+  q("mgt_2_48",2,"A listed social benefit of sustainable design is ____",["Increased pollution","Weaker brand image","Improved public health and responsible consumption","Shorter product lifespan"],2),
+  q("mgt_2_49",2,"Which organizational benefit is associated with sustainability?",["Employee satisfaction","Less compliance laws","Option 3","Option 4"],0),
+  q("mgt_2_50",2,"Which sequence best represents a practical flow from strategy to result in sustainable NPD?",["Design for efficiency/durability — Optimize manufacturing — Minimize packaging — Plan end-of-life — Monitor and improve","Set sustainable goals — Select green materials","Launch products — Plan goals — Recycle — Choose materials","Manufacture — Package — Design — Set goals — Exercise — Set goals — Ignore manufacturing — Dispose"],0),
+  q("mgt_2_51",2,"Product Management mainly focuses on ____",["Rigid long-term plans","Continuous improvement and customer feedback","Ignoring customer input","Annual project reviews only"],1),
+  q("mgt_2_52",2,"The term iteration or sprints in Agile refers to ____",["One-time final product launches","Small, manageable development cycles","Annual meetings","Marketing campaigns"],1),
+  q("mgt_2_53",2,"Agile Product Management is most suitable for ____",["Static, unchanging markets","Government accounting systems","Dynamic industries with rapid technology changes","Manufacturing of traditional goods only"],2),
+  q("mgt_2_54",2,"Which of the following is a key benefit of Agile Product Management?",["Slow delivery cycles","Continuous customer feedback and faster releases","Ignoring errors until the end","Avoiding team discussions"],1),
+  q("mgt_2_55",2,"In Agile, a sprint generally ends with ____",["A complete final product","A usable, testable version of the product","Only planning documents","Employee evaluations"],1),
+  q("mgt_2_56",2,"One of the biggest advantages of Agile is ____",["High documentation and strict plans","Better flexibility and adaptability","No customer involvement","Working alone"],1),
+  q("mgt_2_57",2,"In Agile, customer satisfaction is achieved by ____.",["Delivering value early and frequently","Avoiding changes after planning","Reducing communication","Updating one large release at the end"],0),
+  q("mgt_2_58",2,"\"Accept Changes Anytime\" means ____.",["Only managers can suggest changes","Teams must resist all new ideas","Teams can adjust to new requirements anytime","Products should never be modified"],2),
+  q("mgt_2_59",2,"Which principle emphasizes teamwork and open communication?",["Keep Things Simple","Work Together as One Team","Continuous Delivery","Customer Value over Targets"],1),
+  q("mgt_2_60",2,"According to the Agile Manifesto, the most accurate measure of progress is ____.",["Number of reports completed","Amount of documentation","A working product","Budget spent"],2),
+  q("mgt_2_61",2,"\"Empowered Teams over Top-Down Management\" means ____.",["Only senior managers decide everything","Teams are trusted to manage their own work","Decisions must go through multiple approvals","Teams cannot make any changes"],1),
+  q("mgt_2_62",2,"\"Continuous Delivery\" in Agile means ____.",["Delivering one big product at the end","Regularly releasing small, working parts of the product","Stopping after initial design","Only testing in the last stage"],1),
+  q("mgt_2_63",2,"The Agile Manifesto values which of the following more?",["Internal Targets over Customer Value","Control over Collaboration","Adaptability over Strict Planning","Assumptions over Feedback"],2),
+  q("mgt_2_64",2,"After every sprint, Agile teams should ___.",["Ignore results","Reflect, learn and improve","Start a new project immediately","Take a long break"],1),
+  q("mgt_2_65",2,"Project management primarily helps organizations to ___.",["Increase paperwork","Plan, organize and complete projects successfully","Delay project deadlines","Avoid teamwork"],1),
+  q("mgt_2_66",2,"Which of the following ensures all team members work toward a common goal?",["Advertising","Project management","Human resource planning only","Cost accounting"],1),
+  q("mgt_2_67",2,"The first step in successful project management is ___.",["Execution","Planning and goal setting","Project closure","Marketing"],1),
+  q("mgt_2_68",2,"Proper project planning helps in ___.",["Increasing confusion","Avoiding organization","Saving time and reducing mistakes","Ignoring deadlines"],2),
+  q("mgt_2_69",2,"Efficient resource use in project management means ___.",["Wasting materials for faster work","Using manpower, money and materials wisely","Ignoring cost control","Hiring more people than required"],1),
+  q("mgt_2_70",2,"Which factor ensures a project is completed within the deadline?",["Time management","Market research","Customer surveys","Advertising"],0),
+  q("mgt_2_71",2,"Keeping a project within the approved budget is part of ___.",["Quality management","Cost control","Time management","Marketing"],1),
+  q("mgt_2_72",2,"Quality assurance in project management ensures ___.",["Products are cheap","Output meets required standards","Teams work longer hours","Customers are ignored"],1),
+  q("mgt_2_73",2,"Identifying and reducing possible problems early is part of ___.",["Risk management","Cost management","Scope management","Procurement"],0),
+  q("mgt_2_74",2,"Team co-ordination in project management helps to ___.",["Promote competition within teams","Ensure smooth communication and teamwork","Create confusion","Reduce efficiency"],1),
+  q("mgt_2_75",2,"Project Management focuses on ___.",["Bringing all project parts together in one plan","Recruiting project staff","Buying raw materials","Marketing project outcomes"],0),
+  q("mgt_2_76",2,"Project Scope Management mainly prevents ___.",["Quality improvement","Scope creep or unnecessary work","Resource allocation","Stakeholder meetings"],1),
+  q("mgt_2_77",2,"Using tools like Gantt charts or PERT is part of ___.",["Risk management","Schedule/time management","Procurement management","Cost management"],1),
+  q("mgt_2_78",2,"Using tools like Gantt Charts or PERT is part of ____.",["Risk management","Schedule (Time) management","Procurement management","Cost estimation"],1),
+  q("mgt_2_79",2,"Project Cost Management includes ____.",["Estimating, budgeting and controlling costs","Hiring more staff","Creating reports only","Ignoring budgets"],0),
+  q("mgt_2_80",2,"Project Human Resource Management focuses on ____.",["Buying raw materials","Selecting, training and motivating team members","Setting budgets","Planning project scope"],1),
+  q("mgt_2_81",2,"Project Configuration Management ensures ____.",["Tracking and timely sharing of information","Speedy communication","Reduced documentation only","More project reports"],0),
+  q("mgt_2_82",2,"In project management, \"Plan\" refers to ____.",["The blueprint of what, when and how work will be done","The number of people under the project manager","The budget of the project","The key \"people\" refers to ____"],0),
+  q("mgt_2_83",2,"The key \"people\" refers to ____.",["All individuals involved in the project — team, manager, sponsor","All managers","Only management","The project only"],0),
+  q("mgt_2_84",2,"The \"Power\" element in project management means ____.",["Authority to make decisions and solve problems","Energy consumption of machines","Control over team in a plant","Political influence"],0),
+  q("mgt_2_85",2,"What is the correct order of the five project phases?",["Initiation → Planning → Execution → Monitoring & Controlling → Closure","Initiation → Planning → Execution → Closure → Monitoring","Execution → Initiation → Closure → Planning → Monitoring","Monitoring → Planning → Initiation → Closure → Execution"],0),
+  q("mgt_2_86",2,"Which of the following is NOT an advantage of CPM?",["Helps in project scheduling","Identifies critical and non-critical activities","Ignores time estimation","Assists in resource planning"],2),
+  q("mgt_2_87",2,"In CPM, time estimates for activities are considered _____",["Deterministic (fixed)","Probabilistic (variable)","Randomly and subjectively","Ignored completely"],0),
+  q("mgt_2_88",2,"The full form of PERT is ____",["Project Examination and Review Technique","Program Evaluation and Review Technique","Performance Evaluation and Resource Technique","Planning and Execution Resource Tool"],1),
+  q("mgt_2_89",2,"PERT is mainly used when ____",["Activity time is very certain","Project duration is fixed","Cost is the main criterion","There is no need for scheduling"],1),
+  q("mgt_2_90",2,"In the network, which gives time estimation?",["One-time estimate","Three-time estimates — optimistic, pessimistic and most likely","Four optimistic time","Only average time"],1),
+  q("mgt_2_91",2,"In PERT, Expected Time (TE) is calculated using the formula ____",["(O + 4M + P) / 6","(O + 4M + P) / 2","(O + 3M + P) / 5","(O + 3M + P) / 5"],0),
+  q("mgt_2_92",2,"PERT is best suited for ____",["Repetitive projects","Research and development projects","Construction projects only","Manufacturing plants"],1),
+  q("mgt_2_93",2,"Which of the following statements is true about PERT and CPM?",["PERT deals with uncertain time, CPM with fixed time","CPM deals with uncertain time, PERT with fixed time","Both are the same","Both are same"],0),
+  q("mgt_2_94",2,"A Gantt chart is used for ____",["Planning and tracking progress of activities","Budget estimation only","Identifying project risks","Managing only manpower"],0),
+  q("mgt_2_95",2,"In a Gantt chart, the horizontal bars represent ____",["Activities and their duration","Employees and salaries","Project cost","Risks and constraints"],0),
+  q("mgt_2_96",2,"A Gantt chart is most useful for ____",["Visualizing timelines and overlapping activities","Financial accounting","Quality control","Manpower recruitment"],0),
+  q("mgt_2_97",2,"One limitation of a Gantt chart is ____",["It cannot show task sequence or dependency clearly","It cannot display time and duration","It requires special software","It is only used in small projects"],0),
+  q("mgt_2_98",2,"In project management, an estimate refers to ____",["Guessing project profits","Approximating cost, time and resources required","Only manpower planning","Predicting future profits"],1),
+  q("mgt_2_99",2,"The process of estimating total cost of the project is called ____",["Cost budgeting","Cost control","Financial forecasting","Time scheduling"],0),
+  q("mgt_2_100",2,"A project budget is ____",["A fixed amount for project promotion","A financial plan showing expected costs and resource allocations","Only a record of past expenses","An informal guess of project spending"],1),
+  q("mgt_2_101",2,"Which of the following is NOT an objective of budgeting?",["Controlling project expenditure","Tracking progress and deliverables","Wasting resources intentionally","Ensuring financial discipline"],2),
+  q("mgt_2_102",2,"A good cost estimate should be ____",["Random and approximate","Accurate, realistic and based on data","Based on opinion only","Avoiding cost only"],1),
+  q("mgt_2_103",2,"Budget monitoring during project execution helps ____",["Identifying cost overruns early","Reducing teamwork","Ignoring financial goals","Increasing unnecessary costs"],0),
+  q("mgt_2_104",2,"Which of the following tools can be used together with budgeting for time control?",["PERT and CPM","SWOT analysis","Fishbone diagram","Pareto chart"],0),
+  q("mgt_2_105",2,"The main relationship among CPM, PERT and Gantt chart is that ____",["All are planning and scheduling tools in project management","All are budgeting tools","All are quality control tools","None of the above"],0),
+
+  // UNIT 3: Management Practices
+  q("mgt_3_1",3,"The main purpose of a Quality Circle is to ____",["Solve workplace problems through teamwork","Conduct financial audits","Replace management","Supervise marketing activities"],0),
+  q("mgt_3_2",3,"Quality Circles operate on the principle of ____.",["Hierarchical control","Employee participation and empowerment","Autocratic leadership","Strict discipline"],1),
+  q("mgt_3_3",3,"The concept of Quality Circles originated in ____.",["USA","Japan","Germany","India"],1),
+  q("mgt_3_4",3,"The founder of the Quality Circle concept is ____",["Kaoru Ishikawa","W. Edwards Deming","Joseph Juran","F.W. Taylor"],0),
+  q("mgt_3_5",3,"A typical Quality Circle includes ____",["5-10 members from the same department","Only managers","Outsiders and consultants","Directors and shareholders"],0),
+  q("mgt_3_6",3,"Quality Circles aim at ____",["Developing creativity and problem-solving skills","Punishing poor performers","Cutting salaries","Reducing communication"],0),
+  q("mgt_3_7",3,"The main outcome of a Quality Circle meeting is ____",["New rules","Suggestions for improvement","Promotions","Financial reports"],1),
+  q("mgt_3_8",3,"Which of these is often used in Quality Circles?",["Fishbone diagram","Balance sheet","SWOT matrix only","Ledger book"],0),
+  q("mgt_3_9",3,"Quality Circle members enhance ____",["Motivation and teamwork","Isolation among workers","Political influence","Financial accounting"],0),
+  q("mgt_3_10",3,"Quality Circles were first introduced in India at ____",["BHEL","Tata Steel","Indian Railways","Hindustan Motors"],0),
+  q("mgt_3_11",3,"The ultimate benefit of Quality Circles is ____",["Improved quality and productivity","Higher bureaucracy","Increased absenteeism","Less employee involvement"],0),
+  q("mgt_3_12",3,"Quality Circles operate on a ____ management approach",["Bottom-up","Top-down","Centralized","Bureaucratic"],0),
+  q("mgt_3_13",3,"The term Kaizen means ____",["Continuous improvement","Sudden innovation","Large-scale change","Temporary solution"],0),
+  q("mgt_3_14",3,"Kaizen is a concept developed in ____",["China","Japan","USA","France"],1),
+  q("mgt_3_15",3,"The philosophy of Kaizen emphasizes ____",["Small improvements made regularly","Major one-time reforms","Only technological upgrades","Top management control"],0),
+  q("mgt_3_16",3,"Which statement is most true about Kaizen?",["It depends only on expensive equipment","It requires employee involvement at all levels","It ignores small changes","It is used only in manufacturing"],1),
+  q("mgt_3_17",3,"The main goal of Kaizen is to ____",["Maintain current standards","Achieve continuous betterment","Increase cost","Focus on individuals only"],1),
+  q("mgt_3_18",3,"Which Japanese management practice is closely related to Kaizen?",["Just-in-time (JIT)","Benchmarking","Outsourcing","Downsizing"],0),
+  q("mgt_3_19",3,"A good example of Kaizen is ____",["Re-arranging tools to save motion time","Hiring more supervisors","Conducting annual party","Ignoring small details"],0),
+  q("mgt_3_20",3,"Kaizen primarily depends on ____",["Continuous employee suggestions","Large investments","Expensive consultants","High turnover"],0),
+  q("mgt_3_21",3,"Which of the following is NOT a principle of Kaizen?",["Involve everyone","Think improvement every day","Blame employees for mistakes","Eliminate waste"],2),
+  q("mgt_3_22",3,"The PDCA cycle (Plan-Do-Check-Act) is often associated with ____",["Kaizen","TQM","Six Sigma","QFD, A and B"],3),
+  q("mgt_3_23",3,"Six Sigma aims to ____",["Reduce defects and variation","Increase wastage","Limit employee participation","Focus on hiring"],0),
+  q("mgt_3_24",3,"Six Sigma was developed by ____.",["Motorola","Toyota","General Electric","Ford"],0),
+  q("mgt_3_25",3,"The statistical goal of Six Sigma is ____.",["3.4 defects per million opportunities","100 defects per million","99% accuracy","Zero defects"],0),
+  q("mgt_3_26",3,"The term 'Sigma' represents ____.",["Standard deviation","Mean value","Frequency","Total quality"],0),
+  q("mgt_3_27",3,"The DMAIC cycle stands for ____.",["Define, Measure, Analyze, Improve, Control","Design, Manage, Apply, Implement, Control","Direct, Motivate, Assess, Improve, Conclude","Define, Monitor, Act, Integrate, Conclude"],0),
+  q("mgt_3_28",3,"Six Sigma focuses on ____.",["Data-driven decision-making","Guesswork","Top-level authority only","Financial auditing"],0),
+  q("mgt_3_29",3,"In Six Sigma, Green Belts are ____.",["Employees trained to support improvement projects","Senior executives","Accountants","Temporary workers"],0),
+  q("mgt_3_30",3,"Black Belts in Six Sigma are ____.",["Team leaders and experts who mentor others","New interns","Managers of HR department","Outsiders"],0),
+  q("mgt_3_31",3,"Master Black Belt refers to ____.",["Person who leads Six Sigma program company-wide","Marketing executive","Junior trainee","None of these"],0),
+  q("mgt_3_32",3,"The main focus of Six Sigma is ____.",["Customer satisfaction through defect prevention","Product advertising","Financial reporting","Staff reduction"],0),
+  q("mgt_3_33",3,"Six Sigma projects use which key tool?",["Statistical analysis","Astrology","Random guessing","Marketing mix"],0),
+  q("mgt_3_34",3,"Which company popularized Six Sigma after Motorola?",["General Electric (GE)","Toyota","Sony","Apple"],0),
+  q("mgt_3_35",3,"In Six Sigma, process capability is measured in terms of ____.",["Sigma levels","Mean deviation","Cost per unit","Time only"],0),
+  q("mgt_3_36",3,"The ultimate goal of Six Sigma is to achieve ____.",["99.99966% accuracy","80% efficiency","Average quality","Maximum supervision"],0),
+  q("mgt_3_37",3,"TQM stands for ____.",["Total Quality Management","Technical Quality Measurement","Team Quality Monitoring","Total Quantity Management"],0),
+  q("mgt_3_38",3,"The key objective of TQM is ____.",["Continuous improvement and customer satisfaction","Cost cutting only","Bureaucratic control","Quick profit"],0),
+  q("mgt_3_39",3,"The foundation of TQM lies in ____.",["Quality at every stage","Inspection only","Blaming workers","Reducing production"],0),
+  q("mgt_3_40",3,"TQM requires participation of ____.",["All employees","Only managers","Only production staff","External consultants"],0),
+  q("mgt_3_41",3,"The famous 14 points of quality management were proposed by ____.",["W. Edwards Deming","Joseph Juran","Kaoru Ishikawa","Philip Crosby"],0),
+  q("mgt_3_42",3,"\"Fitness for use\" definition of quality was given by ____.",["Juran","Deming","Taylor","Crosby"],0),
+  q("mgt_3_43",3,"The \"Zero Defect\" concept was given by ____.",["Philip Crosby","Ishikawa","Juran","Deming"],0),
+  q("mgt_3_44",3,"A core principle of TQM is ____.",["Doing things right the first time","Reacting after errors","Blaming others","Ignoring feedback"],0),
+  q("mgt_3_45",3,"TQM promotes ____.",["Customer-driven organization","Profit-driven only","Technology-driven only","Manager-driven"],0),
+  q("mgt_3_46",3,"TQM emphasizes the use of ____.",["Quality tools like Pareto chart, Histogram, Check Sheet","Financial tools","Advertising campaigns","Sales analysis"],0),
+  q("mgt_3_47",3,"Which of the following is NOT an element of TQM?",["Continuous improvement","Employee participation","Customer focus","Rigid hierarchy"],3),
+  q("mgt_3_48",3,"The Plan-Do-Check-Act (PDCA) cycle is used in TQM for ____.",["Continuous improvement","Marketing","Recruitment","Financial planning"],0),
+  q("mgt_3_49",3,"Which of the following is a benefit of TQM?",["Improved morale and productivity","More errors","Reduced teamwork","Increased supervision"],0),
+  q("mgt_3_50",3,"The ultimate aim of TQM is to achieve ____.",["Long-term customer loyalty and organizational excellence","Short-term gains","Maximum supervision","Minimum employee involvement"],0),
+  q("mgt_3_51",3,"The main purpose of 5S is to ____.",["Increase sales","Organize the workplace and improve efficiency","Hire more workers","Reduce salaries"],1),
+  q("mgt_3_52",3,"5S originated in which country?",["China","USA","Japan","Germany"],2),
+  q("mgt_3_53",3,"In 5S, 'Seiri' stands for ____.",["Set in order","Sort - remove unnecessary items","Shine","Sustain - maintain standards"],1),
+  q("mgt_3_54",3,"The second 'S', 'Seiton' means ____.",["Standardize","Set things in order for easy access","Shine","Sustain improvements"],1),
+  q("mgt_3_55",3,"'Seiso' refers to ____.",["Keeping the workplace neat and clean","Sorting out materials","Labeling items","Conducting audits"],0),
+  q("mgt_3_56",3,"The fourth 'S' - 'Seiketsu' means ____.",["Shining tools","Standardizing procedures","Sustaining improvements","Sorting and discarding waste"],1),
+  q("mgt_3_57",3,"The fifth 'S', 'Shitsuke,' means ____.",["Sorting","Discipline and sustaining the habit of 5S","Supervising workers","Scheduling production"],1),
+  q("mgt_3_58",3,"The main benefit of 5S is ____.",["Lower product quality","Clean, safe and efficient workplace","Increased paperwork","Less teamwork"],1),
+  q("mgt_3_59",3,"Which of the following is NOT part of the 5S system?",["Seiri","Seiso","Shitsuke","Six Sigma"],3),
+  q("mgt_3_60",3,"The 5S method is most closely related to ____.",["Lean manufacturing and continuous improvement","Advertising strategy","Finance and accounting","Marketing management"],0),
+  q("mgt_3_61",3,"A red tag is commonly used during which 5S stage?",["Seiketsu","Seiri (Sorting)","Seiso","Shitsuke"],1),
+  q("mgt_3_62",3,"The goal of 'Set in Order' is to ____.",["Arrange items so they are easy to find and return","Store items randomly","Remove all tools from the area","Paint the walls"],0),
+  q("mgt_3_63",3,"Regular cleaning, inspection and maintenance belong to which S?",["Seiso (Shine)","Seiketsu (Standardize)","Shitsuke (Sustain)","Seiri (Sort)"],0),
+  q("mgt_3_64",3,"5S helps to eliminate which of the following wastes?",["Overproduction","Unnecessary motion and time waste","Marketing costs","None of these"],1),
+  q("mgt_3_65",3,"The ultimate goal of 5S is to ____.",["Create a culture of discipline and continuous improvement","Reduce prices","Maintain paperwork","Focus only on profits"],0),
+  q("mgt_3_66",3,"The word 'Kanban' is derived from which language?",["English","Japanese","Chinese","Korean"],1),
+  q("mgt_3_67",3,"The meaning of 'kanban' is ____.",["Visual signal or card","Machine maintenance","Work scheduling software","Raw material storage"],0),
+  q("mgt_3_68",3,"The Kanban system was first developed by ____.",["Motorola","Toyota Motor Corporation","Ford Motor Company","General Electric"],1),
+  q("mgt_3_69",3,"Kanban is mainly used in which production system?",["Just-in-Time (JIT)","Mass production","Batch production","Project-based production"],0),
+  q("mgt_3_70",3,"The main purpose of a Kanban system is to _____",["Increase inventory levels","Control production and material flow visually","Increase paperwork","Delay production"],1),
+  q("mgt_3_71",3,"In the Kanban method, each card represents _____",["A maintenance report","A production order or part requirement","A customer complaint","A financial record"],1),
+  q("mgt_3_72",3,"Kanban helps in achieving which of the following?",["Overproduction","Continuous flow and reduced waste","Maximum storage","Increased downtime"],1),
+  q("mgt_3_73",3,"Which of the following best describes the Kanban principle?",["Push system of production","Pull system of production","Mixed system","Random system"],1),
+  q("mgt_3_74",3,"In a pull-based Kanban system _____.",["Work is started only when there is demand from the next process","Production continues regardless of demand","Raw materials are ordered in bulk","Workers guess production levels"],0),
+  q("mgt_3_75",3,"The two-card Kanban system consists of _____.",["Transport Kanban and Production Kanban","Delivery Kanban and Finance Kanban","Planning Kanban and Cost Kanban","Service Kanban and Product Kanban"],0),
+  q("mgt_3_76",3,"Kanban is mainly used to _____",["Signal the need to move materials or produce parts","Replace supervisors","Increase inspection frequency","Eliminate teamwork"],0),
+  q("mgt_3_77",3,"Which of the following is NOT an advantage of Kanban?",["Reduces inventory","Improves workflow","Increases complexity","Visualizes the production process"],2),
+  q("mgt_3_78",3,"Kanban cards can be replaced by which of the following modern equivalents?",["Electronic signals, barcodes, or RFID tags","Manual logs","Paper forms","Phone calls"],0),
+  q("mgt_3_79",3,"The Kanban system supports which key Lean concept?",["Just-in-Time (JIT)","Six Sigma","Total Quality Management (TQM)","Batch production"],0),
+  q("mgt_3_80",3,"The goal of Kanban in production is to ____",["Produce only what is needed, when it is needed","Produce maximum quantity regardless of demand","Stop production frequently","Store large quantities of finished goods"],0),
+  q("mgt_3_81",3,"Which of the following is a type of Total Maintenance?",["Total Planned Maintenance","Total Productive Maintenance","Total Product Management","Total Preventive Management"],1),
+  q("mgt_3_82",3,"The main objective of TPM is to ____",["Increase machine breakdowns","Maximize equipment efficiency and eliminate waste","Decrease supervision","Reduce operator involvement"],1),
+  q("mgt_3_83",3,"JIT (Just-in-time) is a _____ philosophy",["Waste driven","Demand driven","Process driven","Profit driven"],1),
+  q("mgt_3_84",3,"Kanban is a",["Visual tool","Bar graph","Pie chart","Process chart"],0),
+  q("mgt_3_85",3,"Poka yoke is a",["Mistake proofing technique","Japanese concept","Process improvement technique","Quality improvement tool"],0),
+  q("mgt_3_86",3,"The five pillars of 5S are",["Sort, Set in order, Shine, Standardize, Sustain","Safety, Security, Sanitation, Scheduling, Sales","Sort, Store, Ship, Sell, Save","Speed, Service, Safety, Satisfaction, Success"],0),
+  q("mgt_3_87",3,"Gemba refers to",["The actual place where work happens","A type of Japanese management philosophy","A quality control technique","A production system"],0),
+  q("mgt_3_88",3,"SMED stands for",["Single Minute Exchange of Die","System for Managing Equipment and Dies","Standard Method for Equipment Development","Structured Manufacturing Efficiency Development"],0),
+  q("mgt_3_89",3,"TPM emphasizes which type of maintenance?",["Breakdown maintenance","Preventive and Autonomous maintenance","Emergency maintenance","Extensive maintenance only"],1),
+  q("mgt_3_90",3,"The TPM concept includes how many major pillars?",["3","5","8","10"],2),
+  q("mgt_3_91",3,"Which of the following is NOT one of the 8 Pillars of TPM?",["Autonomous Maintenance","Focused Improvement","Product Design","Education and Training"],2),
+  q("mgt_3_92",3,"The first pillar of TPM, 'Autonomous Maintenance', means ____.",["Operators clean, inspect and maintain their own machines","Only maintenance staff clean machines","Maintenance is ignored","Outsiders repair machines"],0),
+  q("mgt_3_93",3,"Which of the following is a key benefit of TPM?",["Reduced downtime and improved productivity","Increased waste","Higher defect rate","More accidents"],0),
+  q("mgt_3_94",3,"The formula for Overall Equipment Effectiveness (OEE) involves",["Availability × Performance × Quality","Quantity × Time × Speed","Cost × Profit × Revenue","Safety × Speed × Staff"],0),
+  q("mgt_3_95",3,"TPM aims to create a work culture of ____.",["Reactive actions","Proactive participation and ownership by all employees","Blaming maintenance staff","Minimal operator training"],1),
+  q("mgt_3_96",3,"The main objective of Lean Manufacturing is to ____.",["Reduce workforce","Eliminate waste and improve value to the customer","Increase paperwork","Expand bureaucracy"],1),
+  q("mgt_3_97",3,"Lean Manufacturing originated from which company?",["Ford Motors","Toyota Motor Corporation","General Electric","Motorola"],1),
+  q("mgt_3_98",3,"The Toyota Production System (TPS) is the foundation of ____",["Total Quality Management","Lean Manufacturing","Six Sigma","Kaizen only"],1),
+  q("mgt_3_99",3,"The Japanese term 'Muda' refers to ____.",["Improvement","Waste or non-value-added activity","Speed","Quality control"],1),
+  q("mgt_3_100",3,"How many types of waste (Muda) are identified in Lean?",["3","5","7","9"],2),
+  q("mgt_3_101",3,"Which of the following is NOT one of the seven wastes in Lean?",["Overproduction","Waiting time","Product design","Defects"],2),
+  q("mgt_3_102",3,"The Lean principle that focuses on 'producing only what is needed when it is needed' is known as ____",["JIT (Just-In-Time)","TQM","MRP","ERP"],0),
+  // Additional important questions derived from the chapter PDF content
+  q("mgt_3_103",3,"In Kaizen, 'Kai' means ____.",["Good","Change or to correct","Continuous","Standard"],1),
+  q("mgt_3_104",3,"In Kaizen, 'Zen' means ____.",["Good","Change","Speed","Waste"],0),
+  q("mgt_3_105",3,"Which of the following is NOT a founding element of Kaizen?",["Teamwork","Personal discipline","High capital investment","Quality Circles"],2),
+  q("mgt_3_106",3,"The concept of Six Sigma was initiated by ____.",["Carl Frederic Gauss","Kaoru Ishikawa","Bill Smith","W. Edwards Deming"],0),
+  q("mgt_3_107",3,"What does ISO stand for?",["International Standards Organization","International Organization for Standardization","Indian Standards Organization","Integrated System of Operations"],1),
+  q("mgt_3_108",3,"ISO 9001:2016 is primarily related to ____.",["Environmental Management System","Quality Management System","Occupational Health and Safety","Food Safety Management"],1),
+  q("mgt_3_109",3,"ISO 14000 standards are related to ____.",["Quality Management","Environmental Management System","Information Security","Automotive Standards"],1),
+  q("mgt_3_110",3,"Which organization sets and enforces safety and health standards at work in the USA?",["ISO","BIS","OSHA","IEC"],2),
+  q("mgt_3_111",3,"What does OSHA stand for?",["Occupational Safety and Health Administration","Operational Security and Health Agency","Occupational Standards and Hazard Assessment","Organizational Safety and Health Authority"],0),
+  q("mgt_3_112",3,"BIS and ISI marks are examples of ____.",["International Quality Standards","National Quality Standards","Industry Specific Standards","Environmental Standards"],1),
+  q("mgt_3_113",3,"HACCP is an industry-specific quality standard for ____.",["Aerospace","Automotive","Food Safety","Information Technology"],2),
+  q("mgt_3_114",3,"ERP stands for ____.",["Enterprise Resource Planning","Effective Resource Production","Enterprise Risk Management","Electronic Resource Processing"],0),
+  q("mgt_3_115",3,"The primary objective of ERP is to ____.",["Increase manual work","Integrate all departments and functions into a single unified platform","Replace human resources","Focus only on marketing"],1),
+  q("mgt_3_116",3,"Which ERP module handles cash flow and accounting?",["Human Resources","Production & Manufacturing","Finance and Accounting","Inventory Management"],2),
+  q("mgt_3_117",3,"Which ERP module maintains employee data, salary, and leave?",["Human Resources","Finance and Accounting","Purchase/Procurement","Customer Relationship Management"],0),
+  q("mgt_3_118",3,"Which of the following is a limitation of ERP?",["Better efficiency","Accurate information","High cost of software installation","Time and cost saving"],2),
+  q("mgt_3_119",3,"The term \"Servicescape\" refers to ____.",["The quality of service provided","The physical surroundings and environment where service is delivered","The behavior of employees","The price of the service"],1),
+  q("mgt_3_120",3,"Which dimension of Service Quality refers to the physical appearance of facilities, equipment, and staff?",["Reliability","Responsiveness","Assurance","Tangibles"],3),
+  q("mgt_3_121",3,"In Service Quality, \"Empathy\" means ____.",["Ability to perform the service accurately","Willingness to help customers quickly","Caring and personalized attention to each customer","Knowledge and courtesy of employees"],2),
+  q("mgt_3_122",3,"In Servicescape, ambient conditions include ____.",["Furniture arrangement","Lighting, temperature, sound, and smell","Logos and directions","Hygiene and safety measures"],1),
+  q("mgt_3_123",3,"What does OEE stand for in TPM?",["Overall Equipment Effectiveness","Operational Efficiency Evaluation","Overall Enterprise Excellence","Optimal Equipment Engineering"],0),
+  q("mgt_3_124",3,"Value Stream Mapping (VSM) in Lean is used to ____.",["Identify waste and optimize the process","Manage inventory levels","Train employees on safety","Design new products"],0),
+  q("mgt_3_125",3,"The 8th type of waste (Muda) in Lean Manufacturing is ____.",["Transportation","Over processing","Underutilization of people","Inventory"],2),
+  q("mgt_3_126",3,"\"Jishu Hozen\" in TPM refers to ____.",["Planned Maintenance","Autonomous Maintenance","Focused Improvement","Quality Maintenance"],1),
+  q("mgt_3_127",3,"A Supplier Kanban is used to ____.",["Request parts or materials from an external supplier","Authorize the production of a specific part","Authorize the movement of material internally","Signal urgent production requirements"],0),
+  q("mgt_3_128",3,"The first step in Lean Manufacturing implementation is ____.",["Create Flow","Map the value stream","Identify value","Establish Pull System"],2),
+  q("mgt_3_129",3,"The step in ISO 9001 certification where external auditors verify compliance is called ____.",["Gap Analysis","Internal Audit","Certification Audit","Documentation"],2),
+  q("mgt_3_130",3,"Which of the following is a key feature of ERP?",["Decentralized database","Manual data entry","Centralized database","Department-specific software"],2),
+
+  // UNIT 4: Marketing Management (101-250)
+  q("mgt_4_101",4,"Which of the following best defines 'Marketing Management'?",["Managing factory workers","The art and science of choosing target markets and getting, keeping, and growing customers through creating, delivering, and communicating superior customer value","Producing goods without considering customer needs","Selling products at any cost"],1),
+  q("mgt_4_102",4,"Marketing is about turning customer needs into ____.",["Profitable opportunities","Losses","Waste","Problems"],0),
+  q("mgt_4_103",4,"Which of the following is NOT a significance of marketing management?",["Identifying customer needs","Strategic planning","Brand building","Ignoring market competition"],3),
+  q("mgt_104",4,"Market differentiation helps a business to ____.",["Blend in with competitors","Stand out from competitors by offering unique value","Copy competitor products","Reduce product quality"],1),
+  q("mgt_4_105",4,"Brand building results in ____.",["Customer trust and recognition","High employee turnover","Loss of revenue","Product defects"],0),
+  q("mgt_4_106",4,"Profitability in marketing is achieved by ____.",["Ignoring costs","Delivering value while managing costs efficiently","Overpricing products","Avoiding sales"],1),
+  q("mgt_4_107",4,"Adaptability in marketing means ____.",["Refusing to change strategies","Adjusting to changing customer preferences and market trends","Sticking to outdated methods","Ignoring digital platforms"],1),
+  q("mgt_4_108",4,"The '7Ps of Marketing' are an extension of the traditional ____.",["3Ps","4Ps","5Ps","6Ps"],1),
+  q("mgt_4_109",4,"Which of the following belongs to the traditional 4Ps of Marketing?",["People","Process","Physical Evidence","Product"],3),
+  q("mgt_4_110",4,"The 'Product' in the marketing mix refers to ____.",["The goods or services offered to the target market","The price charged to customers","The advertisement of the product","The place where it is sold"],0),
+  q("mgt_4_111",4,"'Price' in the marketing mix is important because ____.",["It determines the product's quality only","It is the only element that generates revenue","It does not affect customer perception","It is fixed and cannot be changed"],1),
+  q("mgt_4_112",4,"Which 'P' involves decisions about channels, logistics, and distribution?",["Product","Price","Place","Promotion"],2),
+  q("mgt_4_113",4,"Advertising, public relations, and sales promotions are part of which P?",["Product","Price","Place","Promotion"],3),
+  q("mgt_4_114",4,"The 'People' element in the 7Ps refers to ____.",["Only the customers","Only the top management","Employees, staff, and anyone involved in delivering the service","Competitors"],2),
+  q("mgt_4_115",4,"'Process' in the 7Ps refers to ____.",["The manufacturing cost","The flow of activities by which the service is delivered","The physical decor of the store","The advertising strategy"],1),
+  q("mgt_4_116",4,"Which of the following is an example of 'Physical Evidence'?",["The training of staff","The price of the product","The interior design and ambiance of a restaurant","The supply chain process"],2),
+  q("mgt_4_117",4,"Physical Evidence is crucial in service marketing because ____.",["Services are tangible","Services are intangible and customers look for physical cues to judge quality","It replaces the need for people","It lowers the price"],1),
+  q("mgt_4_118",4,"A clean, well-organized hospital room with modern equipment provides ____.",["Process efficiency","Physical Evidence of quality service","Pricing strategy","Product placement"],1),
+  q("mgt_4_119",4,"The uniform worn by airline staff is a part of which P?",["Product","Physical Evidence","People","Price"],1),
+  q("mgt_4_120",4,"Which P ensures that the service is delivered smoothly and consistently?",["People","Process","Physical Evidence","Price"],1),
+  q("mgt_4_121",4,"A 'Need' is defined as ____.",["A desire for a specific brand","A basic human requirement","Something you buy impulsively","A luxury item"],1),
+  q("mgt_4_122",4,"'Want' is described as ____.",["A basic survival instinct","The form that a human need takes when shaped by culture and personality","A product with purchasing power","A necessity of life"],1),
+  q("mgt_4_123",4,"When a 'Want' is backed by purchasing power, it becomes a ____.",["Need","Market","Demand","Desire"],2),
+  q("mgt_4_124",4,"A person feeling hungry (Need) wants a Burger (Want), and buys it because they have money (____).",["Demand","Need","Desire","Trend"],0),
+  q("mgt_4_125",4,"According to the text, Desire = ____.",["Need + Want","Want + Demand","Need + Demand","Product + Price"],0),
+  q("mgt_4_126",4,"Which of the following is a 'Need'?",["A Rolex watch","A McDonald's meal","Clothing","A luxury car"],2),
+  q("mgt_4_127",4,"Which of the following represents a 'Want'?",["Thirst","Hunger","Craving for a Coca-Cola","Shelter from rain"],2),
+  q("mgt_4_128",4,"Marketers primarily try to influence ____.",["Human needs","Human wants and demands","Natural instincts","Basic survival skills"],1),
+  q("mgt_4_129",4,"Customer Relationship Management (CRM) is best described as ____.",["A hardware system","A strategy and system to build, maintain, and strengthen long-term relationships with customers","A method to ignore customer complaints","A type of traditional marketing"],1),
+  q("mgt_4_130",4,"CRM is not just technology; it is about ____.",["Selling products at any cost","Understanding people and creating lasting trust","Reducing staff count","Maximizing short-term profits"],1),
+  q("mgt_4_131",4,"Which of the following is a benefit of CRM?",["Increased customer churn","Enhanced teamwork between marketing, sales, and service departments","Slower problem resolution","Decreased sales growth"],1),
+  q("mgt_4_132",4,"CRM helps in identifying profitable customers, which aids in ____.",["Wasting marketing resources","Targeting the right audience effectively","Ignoring loyal customers","Reducing customer satisfaction"],1),
+  q("mgt_4_133",4,"The first step in the CRM process is ____.",["Customer Retention","Customer Identification","Customer Loyalty & Growth","Customer Acquisition"],1),
+  q("mgt_4_134",4,"Customer Acquisition refers to ____.",["Keeping existing customers","Bringing new customers to the business","Identifying target groups","Building loyalty programs"],1),
+  q("mgt_4_135",4,"Customer Engagement involves ____.",["Interacting meaningfully with customers to keep them interested","Ignoring customer feedback","Selling a product once and moving on","Decreasing communication"],0),
+  q("mgt_4_136",4,"Customer Retention focuses on ____.",["Finding new markets","Keeping existing customers engaged and preventing them from switching to competitors","Closing the business","Reducing product quality"],1),
+  q("mgt_4_137",4,"The ultimate goal of the CRM process is ____.",["Customer Identification","Customer Loyalty & Growth","Customer Acquisition","Complaint Handling"],1),
+  q("mgt_4_138",4,"Which CRM step deals with quick problem solving and complaint handling?",["Customer Identification","Customer Retention","Customer Acquisition","Customer Engagement"],1),
+  q("mgt_4_139",4,"Traditional Marketing primarily relies on ____.",["Online channels","Social media","Offline channels","Search engines"],2),
+  q("mgt_4_140",4,"Which of the following is a Traditional Marketing channel?",["SEO","Newspaper ads","Email marketing","Social Media Marketing"],1),
+  q("mgt_4_141",4,"Telemarketing is a form of ____.",["Digital Marketing","Traditional Marketing","Event Management","Agile Marketing"],1),
+  q("mgt_4_142",4,"A key characteristic of Traditional Marketing is ____.",["Two-way communication","Real-time analytics","One-way communication","Highly targeted ads"],2),
+  q("mgt_4_143",4,"Which of the following is a limitation of Traditional Marketing?",["Easy to track ROI","Expensive and hard to measure exact results","Global reach instantly","Highly flexible to change mid-campaign"],1),
+  q("mgt_4_144",4,"Traditional Marketing generally has a ____ focus compared to Digital Marketing.",["Global","Local","Virtual","Cloud-based"],1),
+  q("mgt_4_145",4,"Billboards and TV commercials are examples of ____.",["Digital Marketing","Traditional Marketing","CRM","Agile Product Management"],1),
+  q("mgt_4_146",4,"Digital Marketing is preferred by small businesses mainly because it is ____.",["High cost","Low cost and highly targeted","Untrackable","Offline"],1),
+  q("mgt_4_147",4,"A major advantage of Digital Marketing is ____.",["One-way communication","Real-time feedback and analytics","Limited reach","No competition"],1),
+  q("mgt_4_148",4,"SEO stands for ____.",["Search Engine Optimization","Social Email Outreach","Sales Engine Operation","System Efficiency Output"],0),
+  q("mgt_4_149",4,"Which type of marketing allows for interactive, two-way communication?",["Traditional Marketing","Digital Marketing","Print Media","Broadcast Media"],1),
+  q("mgt_4_150",4,"A limitation of Digital Marketing is ____.",["Low cost","Global reach","Privacy and data security concerns","High expense for ads"],2),
+  q("mgt_4_151",4,"Digital marketing performance often depends on ____.",["Printing press quality","Global algorithms and platform changes","Radio signal strength","Billboard visibility"],1),
+  q("mgt_4_152",4,"Which marketing type requires internet access and technical knowledge?",["Traditional Marketing","Digital Marketing","Direct Mail","Telemarketing"],1),
+  q("mgt_4_153",4,"Running ads on Instagram is an example of ____.",["Traditional Marketing","Digital Marketing","Event Marketing","Print Marketing"],1),
+  q("mgt_4_154",4,"Which marketing approach provides global reach at a relatively low cost?",["Newspaper Ads","TV Commercials","Digital Marketing","Radio Broadcasts"],2),
+  q("mgt_4_155",4,"Event Management involves ____.",["Only attending events","Planning, organizing, and executing events","Ignoring budgets","Selling tickets only"],1),
+  q("mgt_4_156",4,"Which of the following is a type of corporate event?",["Wedding","Product launch","Birthday party","Music festival"],1),
+  q("mgt_4_157",4,"A 'Blood Donation Camp' is an example of a ____ event.",["Corporate","Social","Fundraising or Charity","Educational"],2),
+  q("mgt_4_158",4,"A workshop or guest lecture falls under which type of event?",["Corporate","Social","Cultural","Educational"],3),
+  q("mgt_4_159",4,"An Independence Day parade is a ____ event.",["Corporate","Social","Govt & Public","Fundraising"],2),
+  q("mgt_4_160",4,"In event management, what does 'Vendor Coordination' involve?",["Booking caterers, decorators, and photographers","Sending invitations","Arranging transportation","Thank you notes"],0),
+  q("mgt_4_161",4,"Logistics in event management includes ____.",["Selecting the theme","Guest transportation and seating plans","Printing brochures","Post-event evaluation"],1),
+  q("mgt_4_162",4,"Post-event tasks typically include ____.",["Venue selection","Vendor booking","Sharing photos and sending thank you notes","Guest transportation"],2),
+  q("mgt_4_163",4,"Crisis Management in events means ____.",["Canceling the event immediately","Anticipating, preparing for, and responding to unexpected problems to minimize damage","Ignoring the problem until it goes away","Blaming the attendees"],1),
+  q("mgt_4_164",4,"A power failure during an event is a ____ crisis.",["Natural","Technical","Financial","Public Relationship"],1),
+  q("mgt_4_165",4,"A fire or theft at an event is classified as a ____ crisis.",["Security","Medical","Technical","Natural"],0),
+  q("mgt_4_166",4,"A flood affecting an outdoor event is a ____ crisis.",["Natural","Security","Technical","Financial"],0),
+  q("mgt_4_167",4,"Food poisoning at a corporate event is a ____ crisis.",["Technical","Medical","Financial","Public Relationship"],1),
+  q("mgt_4_168",4,"Negative media coverage during an event is a ____ crisis.",["Security","Medical","Financial","Public Relationship"],3),
+  q("mgt_4_169",4,"Sponsor withdrawal before an event is a ____ crisis.",["Natural","Technical","Financial","Security"],2),
+  q("mgt_4_170",4,"The stage in Crisis Management that focuses on 'Preparation and Prevention' is ____.",["Pre-Crisis","Crisis","Post-Crisis","Recovery"],0),
+  q("mgt_4_171",4,"During the 'Crisis' stage (when the problem occurs), the focus should be on ____.",["Preparation & Prevention","Responding quickly & calmly","Recovery & Learning","Blaming others"],1),
+  q("mgt_4_172",4,"The 'Post-Crisis' stage focuses on ____.",["Preparation & Prevention","Recovery & Learning","Responding quickly","Ignoring the issue"],1),
+  q("mgt_4_173",4,"Which aspect of Crisis Management involves identifying potential risks before the event?",["Crisis Prevention","Crisis Response","Recovery","Post-Crisis Evaluation"],0),
+  q("mgt_4_174",4,"Which aspect of Crisis Management deals with taking immediate action when the crisis occurs?",["Crisis Prevention","Crisis Response","Recovery","Pre-Crisis Planning"],1),
+  q("mgt_4_175",4,"Event management primarily requires proper planning, budgeting, and ____.",["Ignoring risks","Coordination","Increasing waste","Canceling contracts"],1),
+  q("mgt_4_176",4,"The 7Ps of Marketing are particularly important for ____.",["Only product-based businesses","Only service-based businesses","Both product and service businesses","Manufacturing only"],2),
+  q("mgt_4_177",4,"Which P in the marketing mix addresses 'How much you charge'?",["Product","Price","Place","Promotion"],1),
+  q("mgt_4_178",4,"Which P in the marketing mix addresses 'Where you sell'?",["Product","Price","Place","Promotion"],2),
+  q("mgt_4_179",4,"Which P in the marketing mix addresses 'How you communicate'?",["Product","Price","Place","Promotion"],3),
+  q("mgt_4_180",4,"Which P in the marketing mix addresses 'Who is involved'?",["Process","People","Physical Evidence","Place"],1),
+  q("mgt_4_181",4,"Which P in the marketing mix addresses 'How it is delivered'?",["Process","People","Physical Evidence","Place"],0),
+  q("mgt_4_182",4,"Which P in the marketing mix addresses 'Proof of Service or Quality'?",["Process","People","Physical Evidence","Place"],2),
+  q("mgt_4_183",4,"Marketing is not about just selling; it is about ____.",["Making profits only","Building strong relationships with customers by offering satisfaction and value","Manipulating customers","Manufacturing goods"],1),
+  q("mgt_4_184",4,"Marketing Management is the art of finding, keeping, and growing ____.",["Employees","Customers","Competitors","Suppliers"],1),
+  q("mgt_4_185",4,"A person deciding to order a pizza from Domino's because they have money is an example of ____.",["Need","Want","Demand","Desire"],2),
+  q("mgt_4_186",4,"A person choosing between a Pizza or a Burger based on taste is expressing a ____.",["Need","Want","Demand","Necessity"],1),
+  q("mgt_4_187",4,"Hunger is an example of a ____.",["Need","Want","Demand","Market"],0),
+  q("mgt_4_188",4,"Which of the following is a primary goal of CRM?",["Increase customer churn","Build long-term customer loyalty","Reduce customer satisfaction","Increase employee turnover"],1),
+  q("mgt_4_189",4,"CRM improves customer satisfaction through ____.",["Ignoring feedback","Better service and complaint handling","Higher prices","Reducing communication"],1),
+  q("mgt_4_190",4,"Which type of marketing uses offline channels like TV, radio, and billboards?",["Digital Marketing","Traditional Marketing","Event Marketing","Relationship Marketing"],1),
+  q("mgt_4_191",4,"Which type of marketing uses online channels like social media, SEO, and websites?",["Digital Marketing","Traditional Marketing","Print Marketing","Broadcast Marketing"],0),
+  q("mgt_4_192",4,"Traditional marketing generally has ____ tracking of results.",["Real-time","Highly accurate","Limited","No"],2),
+  q("mgt_4_193",4,"Digital marketing allows for ____ marketing, reaching specific demographics easily.",["Untargeted","Targeted","Mass","Random"],1),
+  q("mgt_4_194",4,"High competition online and dependence on algorithms are limitations of ____.",["Traditional Marketing","Digital Marketing","Event Management","CRM"],1),
+  q("mgt_4_195",4,"A marathon or sports day event is categorized as a ____ event.",["Corporate","Social","Sports","Educational"],2),
+  q("mgt_4_196",4,"A yatra or bhajan event is categorized as a ____ event.",["Corporate","Social","Religious & Spiritual","Fundraising"],2),
+  q("mgt_4_197",4,"A drama or music event is categorized as a ____ event.",["Corporate","Cultural","Educational","Fundraising"],1),
+  q("mgt_4_198",4,"Which aspect of event management includes deciding the budget and duration?",["Planning","Vendor coordination","Logistics","Post-event tasks"],0),
+  q("mgt_4_199",4,"Which aspect of event management includes sending invitations and RSVPs?",["Venue selection","Vendor coordination","Promotion","Logistics"],2),
+  q("mgt_4_200",4,"Which aspect of event management includes arranging guest transportation and seating plans?",["Venue selection","Vendor coordination","Promotion","Logistics"],3),
+  q("mgt_4_201",4,"Which aspect of event management involves events proceeding according to the schedule on the day of the event?",["Planning","Vendor coordination","On-site management","Post-event tasks"],2),
+  q("mgt_4_202",4,"Crisis management aims to minimize damage and ensure ____.",["Financial loss","Safety","Event cancellation","Negative publicity"],1),
+  q("mgt_4_203",4,"A crisis caused by a sponsor pulling out of an event is a ____ crisis.",["Natural","Technical","Financial","Public Relationship"],2),
+  q("mgt_4_204",4,"A crisis caused by a power failure is a ____ crisis.",["Natural","Technical","Medical","Security"],1),
+  q("mgt_4_205",4,"A crisis caused by negative media coverage is a ____ crisis.",["Natural","Security","Financial","Public Relationship"],3),
+  q("mgt_4_206",4,"A crisis caused by food poisoning is a ____ crisis.",["Technical","Medical","Financial","Security"],1),
+  q("mgt_4_207",4,"A crisis caused by a flood is a ____ crisis.",["Natural","Technical","Financial","Security"],0),
+  q("mgt_4_208",4,"A crisis caused by a fire or theft is a ____ crisis.",["Natural","Technical","Financial","Security"],3),
+  q("mgt_4_209",4,"The 'Crisis Prevention' aspect focuses on ____.",["Responding to the crisis","Recovering from the crisis","Anticipating and preparing for potential crises","Blaming others for the crisis"],2),
+  q("mgt_4_210",4,"The 'Crisis Response' aspect focuses on ____.",["Anticipating the crisis","Taking immediate action to handle the crisis","Recovering from the crisis","Evaluating the crisis after it happens"],1),
+  q("mgt_4_211",4,"The 'Recovery & Post-Crisis Evaluation' aspect focuses on ____.",["Taking immediate action","Anticipating the crisis","Returning to normal operations and learning from the event","Ignoring the crisis"],2),
+  q("mgt_4_212",4,"Marketing management is the process of planning, organizing, directing, and controlling all ____.",["Financial activities","Marketing activities","Production activities","HR activities"],1),
+  q("mgt_4_213",4,"Strategic planning in marketing helps in ____.",["Avoiding competition","Setting long-term goals and direction","Day-to-day operations only","Reducing customer base"],1),
+  q("mgt_4_214",4,"Which of the following is NOT one of the 7Ps?",["Product","Price","People","Patience"],3),
+  q("mgt_4_215",4,"The 'Product' P includes decisions about ____.",["Quality, design, and features","Discounts and offers","Advertising channels","Delivery methods"],0),
+  q("mgt_4_216",4,"The 'Price' P includes decisions about ____.",["Product features","Discounts, list price, and payment terms","Advertising budget","Distribution channels"],1),
+  q("mgt_4_217",4,"The 'Place' P includes decisions about ____.",["Product packaging","Channels, logistics, and locations","Sales promotion","Employee training"],1),
+  q("mgt_4_218",4,"The 'Promotion' P includes decisions about ____.",["Advertising, sales promotion, and public relations","Product design","Pricing strategy","Distribution network"],0),
+  q("mgt_4_219",4,"The 'People' P emphasizes ____.",["The importance of customer service and employee training","The physical environment","The process of delivery","The price of the product"],0),
+  q("mgt_4_220",4,"The 'Process' P refers to ____.",["The flow of activities by which the service is delivered","The physical evidence of the service","The people delivering the service","The price of the service"],0),
+  q("mgt_4_221",4,"The 'Physical Evidence' P includes ____.",["The training of staff","The ambiance, decor, and physical facilities","The process flow","The promotional strategy"],1),
+  q("mgt_4_222",4,"A basic human requirement for shelter is a ____.",["Want","Demand","Need","Desire"],2),
+  q("mgt_4_223",4,"Needing shelter but wanting a penthouse apartment is an example of a ____.",["Need","Want","Demand","Requirement"],1),
+  q("mgt_4_224",4,"Having the money to actually rent or buy the penthouse makes it a ____.",["Need","Want","Demand","Desire"],2),
+  q("mgt_4_225",4,"CRM supports quick problem solving and ____.",["Complaint creation","Complaint handling","Employee turnover","Cost reduction"],1),
+  q("mgt_4_226",4,"CRM helps in identifying profitable customers to ____.",["Ignore them","Focus marketing efforts effectively","Charge them more","Provide them less service"],1),
+  q("mgt_4_227",4,"CRM enhances teamwork between marketing, sales, and ____ departments.",["Finance","Production","Service","Quality Control"],2),
+  q("mgt_4_228",4,"Which of the following is NOT a step in the CRM process?",["Customer Identification","Customer Acquisition","Customer Retention","Vendor Coordination"],3),
+  q("mgt_4_229",4,"Traditional marketing includes channels like ____.",["Social media and SEO","TV, radio, and newspapers","Websites and email","PPC and content marketing"],1),
+  q("mgt_4_230",4,"One of the major limitations of traditional marketing is that it is ____.",["Too interactive","Hard to measure results","Low cost","Highly targeted"],1),
+  q("mgt_4_231",4,"Digital marketing includes channels like ____.",["Billboards and direct mail","Social media, websites, and online ads","TV and radio","Newspapers and magazines"],1),
+  q("mgt_4_232",4,"A major strength of digital marketing is ____.",["One-way communication","Real-time feedback and analytics","Limited reach","No technical knowledge required"],1),
+  q("mgt_4_233",4,"A limitation of digital marketing is ____.",["Low cost","Global reach","High competition and privacy concerns","Two-way communication"],2),
+  q("mgt_4_234",4,"Event management means planning, organizing, and executing different types of ____.",["Factories","Events","Marketing campaigns","Supply chains"],1),
+  q("mgt_4_235",4,"Product launches, conferences, and meetings are examples of ____ events.",["Corporate","Social","Cultural","Religious"],0),
+  q("mgt_4_236",4,"Weddings and birthday parties are examples of ____ events.",["Corporate","Social","Cultural","Educational"],1),
+  q("mgt_4_237",4,"Music festivals and dramas are examples of ____ events.",["Corporate","Social","Cultural","Educational"],2),
+  q("mgt_4_238",4,"Workshops and guest lectures are examples of ____ events.",["Corporate","Social","Cultural","Educational"],3),
+  q("mgt_4_239",4,"Marathons and sports days are examples of ____ events.",["Corporate","Social","Cultural","Sports"],3),
+  q("mgt_4_240",4,"Movies in a theater are examples of ____ events.",["Corporate","Social","Cultural","Entertainment"],3),
+  q("mgt_4_241",4,"Independence day celebrations are examples of ____ events.",["Corporate","Social","Govt & Public","Religious"],2),
+  q("mgt_4_242",4,"Yatras and bhajans are examples of ____ events.",["Corporate","Social","Govt & Public","Religious & Spiritual"],3),
+  q("mgt_4_243",4,"Blood donation camps are examples of ____ events.",["Corporate","Social","Fundraising or Charity","Religious"],2),
+  q("mgt_4_244",4,"Which of the following is NOT a type of crisis in event management?",["Natural Crisis","Security Crisis","Marketing Crisis","Technical Crisis"],2),
+  q("mgt_4_245",4,"A flood or storm affecting an event is a ____ crisis.",["Natural","Security","Technical","Financial"],0),
+  q("mgt_4_246",4,"A fire or theft affecting an event is a ____ crisis.",["Natural","Security","Technical","Medical"],1),
+  q("mgt_4_247",4,"A power failure or equipment breakdown is a ____ crisis.",["Natural","Security","Technical","Medical"],2),
+  q("mgt_4_248",4,"A sponsor withdrawing funding is a ____ crisis.",["Natural","Security","Technical","Financial"],3),
+  q("mgt_4_249",4,"Food poisoning at an event is a ____ crisis.",["Natural","Security","Technical","Medical"],3),
+  q("mgt_4_250",4,"Negative media coverage affecting an event's reputation is a ____ crisis.",["Natural","Security","Technical","Public Relationship"],3),
+
+
+  // UNIT 5: Supply Chain & Human Resource Management (251-400)
+
+  q("mgt_5_251",5,"Managing the entire chain of supply efficiently to ensure the right product reaches the right customer at the right time and cost is called ____.",["Logistics Management","Supply Chain Management (SCM)","Human Resource Management","Marketing Management"],1),
+
+  q("mgt_5_252",5,"Which management focuses specifically on transportation, warehousing, and distribution?",["Supply Chain Management","Human Resource Management","Logistics Management","Financial Management"],2),
+
+  q("mgt_5_253",5,"SCM is the full journey of a product, while logistics is the ____.",["Destination of the product","Vehicle that drives it forward","Raw material used","Customer feedback"],1),
+
+  q("mgt_5_254",5,"A supply chain is best described as ____.",["A single factory producing goods","A network connecting everyone involved in making a product available to the end customer","Only the transportation of goods","The marketing strategy for a product"],1),
+
+  q("mgt_5_255",5,"In the biscuit supply chain example, what happens at the mill?",["Wheat is purchased","Flour is ground","Biscuits are baked","Biscuits are distributed to shops"],1),
+
+  q("mgt_5_256",5,"SCM is the process of planning, controlling, and improving the flow of ____.",["Only materials","Only information","Materials, information, and money","Only money"],2),
+
+  q("mgt_5_257",5,"Which of the following is NOT an importance of SCM?",["Smooth flow of goods","Waste reduction","Increased production defects","Customer satisfaction"],2),
+
+  q("mgt_5_258",5,"Better coordination and reduced costs are key benefits of ____.",["Poor logistics","Effective Supply Chain Management","Ignoring the supply chain","Increasing middlemen"],1),
+
+  q("mgt_5_259",5,"Logistics Management is the process of efficiently managing transportation, warehousing, packaging, and ____.",["Manufacturing raw materials","Delivery of goods from one place to another","Hiring employees","Pricing the product"],1),
+
+  q("mgt_5_260",5,"Which of the following is a function of Logistics Management?",["Recruitment","Inventory Control","Product Design","Performance Appraisal"],1),
+
+  q("mgt_5_261",5,"Order processing and packaging & handling are functions of ____.",["Human Resource Management","Marketing Management","Logistics Management","Production Management"],2),
+
+  q("mgt_5_262",5,"Which function of logistics ensures the safe and secure storage of goods before distribution?",["Transportation","Warehousing","Order processing","Information flow"],1),
+
+  q("mgt_5_263",5,"The flow of data across the supply chain is known as ____.",["Financial flow","Information flow","Material flow","Logistical flow"],1),
+
+  q("mgt_5_264",5,"Which of the following correctly compares SCM and Logistics?",["SCM has a narrow scope, Logistics has a broad scope","SCM focuses on execution, Logistics focuses on planning","SCM focuses on planning & coordination, Logistics focuses on execution & delivery","SCM is only for goods, Logistics is only for services"],2),
+
+  q("mgt_5_265",5,"The objective of logistics is ____.",["Efficiency across the whole chain","Timely and safe movement of goods","Building supplier relationships","Designing the product"],1),
+
+  q("mgt_5_266",5,"Delivering goods from a warehouse to a customer is an example of ____.",["Logistics","Supply Chain Design","HRM","Strategic Planning"],0),
+
+  q("mgt_5_267",5,"Managing a factory-to-store network is an example of ____.",["Logistics","Supply Chain Management","Transaction Processing","Charismatic Leadership"],1),
+
+  q("mgt_5_268",5,"In the components of SCM, the 'Input Source' refers to the ____.",["Customer","Retailer","Supplier","Distributor"],2),
+
+  q("mgt_5_269",5,"In the components of SCM, the 'Production Unit' refers to the ____.",["Supplier","Manufacturer","Warehouse","Retailer"],1),
+
+  q("mgt_5_270",5,"Warehouses in a supply chain act as ____.",["Input sources","Production units","Storage Centers","End Users"],2),
+
+  q("mgt_5_271",5,"The 'Point of Sale' in the SCM component chain is the ____.",["Distributor","Wholesaler","Retailer","Customer"],2),
+
+  q("mgt_5_272",5,"The ultimate 'End User' in the supply chain is the ____.",["Supplier","Manufacturer","Distributor","Customer"],3),
+
+  q("mgt_5_273",5,"Which flow in SCM involves the movement of money and credit terms?",["Material Flow","Information Flow","Financial Flow","Product Flow"],2),
+
+  q("mgt_5_274",5,"Which component of logistics involves finding the most efficient paths for delivery?",["Order Processing","Route Optimization","Data Storage","Inventory Management"],1),
+
+  q("mgt_5_275",5,"Customer Service & Support is a component of ____.",["Only SCM","Only Logistics Management","Both Logistics and SCM","Neither SCM nor Logistics"],1),
+
+  q("mgt_5_276",5,"Which of the following is NOT a component of Logistics Management?",["Transportation","Warehousing","Manufacturing","Order Processing"],2),
+
+  q("mgt_5_277",5,"Information and Communication Technology (ICT) in logistics helps with ____.",["Raw material extraction","Real-time tracking and warehouse management","Employee hiring","Product design"],1),
+
+  q("mgt_5_278",5,"How does IT improve the Supply Chain?",["By increasing errors","By reducing communication","By increasing speed, efficiency, and transparency","By making decision-making harder"],2),
+
+  q("mgt_5_279",5,"Which of the following is an importance of IT in Logistics?",["Route optimization","Increasing transportation costs","Manual data entry","Delayed tracking"],0),
+
+  q("mgt_5_280",5,"Data storage and security in logistics is an IT benefit that ensures ____.",["Faster vehicle speeds","Protection of sensitive shipment and customer data","Physical protection of goods","Employee discipline"],1),
+
+  q("mgt_5_281",5,"Every organization depends on people to achieve its goals. The process of managing these people systematically is called ____.",["Supply Chain Management","Human Resource Management (HRM)","Logistics Management","Financial Management"],1),
+
+  q("mgt_5_282",5,"HRM is the process of planning, organizing, directing, and controlling the functions related to ____.",["Machines and materials","Money and markets","People in an organization","Supply chains"],2),
+
+  q("mgt_5_283",5,"In HRM, 'Human' refers to ____.",["Machines used in the factory","Money available in the bank","People who work in the organization","Raw materials"],2),
+
+  q("mgt_5_284",5,"In HRM, 'Resource' means the skills, knowledge, talent, and ____ of people.",["Limitations","Creativity","Weaknesses","Salary demands"],1),
+
+  q("mgt_5_285",5,"In HRM, 'Management' means handling human resources ____.",["Carelessly","Effectively and efficiently","Only when needed","Through strict punishment only"],1),
+
+  q("mgt_5_286",5,"The scope of HRM that involves recruitment, placement, salary, and appraisal is ____.",["Personnel Administration","HRD","Industrial Relations","Modern HR Practices"],0),
+
+  q("mgt_5_287",5,"Training, motivation, and career planning fall under which scope of HRM?",["Personnel Administration","Human Resource Development (HRD)","Employee Welfare","Industrial Relations"],1),
+
+  q("mgt_5_288",5,"Grievance handling and union relations are part of ____.",["HRD","Personnel Administration","Industrial/Employee Relations","Employee Welfare"],2),
+
+  q("mgt_5_289",5,"Ensuring safety and health facilities for workers is part of ____.",["Employee Welfare","Industrial Relations","HRD","Modern HR Practices"],0),
+
+  q("mgt_5_290",5,"HR Analytics, Diversity, and CSR are examples of ____.",["Traditional HR Practices","Industrial Relations","Modern HR Practices","Personnel Administration"],2),
+
+  q("mgt_5_291",5,"Which principle of HRM ensures treating all employees equally without bias?",["Principle of Discipline","Principle of Equity & Fairness","Principle of Participation","Principle of Well-being"],1),
+
+  q("mgt_5_292",5,"The Principle of Well-being & Motivation focuses on ____.",["Strict rules and punishments","Physical and mental health of employees","Quick decision-making","Following government rules only"],1),
+
+  q("mgt_5_293",5,"Involving employees in decision-making and upgrading their skills is part of the Principle of ____.",["Equity & Fairness","Discipline","Participation & Continuous Development","Well-being"],2),
+
+  q("mgt_5_294",5,"Maintaining rules and a strict code of conduct in an organization reflects the Principle of ____.",["Discipline","Participation","Well-being","Equity"],0),
+
+  q("mgt_5_295",5,"Recruitment is defined as the process of ____.",["Selecting the best candidate","Searching for and attracting suitable candidates for employment","Firing non-performing employees","Training new employees"],1),
+
+  q("mgt_5_296",5,"The main aim of recruitment is to ____.",["Reduce company costs","Develop a large pool of qualified applicants","Select exactly one candidate","Avoid hiring from external sources"],1),
+
+  q("mgt_5_297",5,"Which of the following is an internal source of recruitment?",["Campus Recruitment","Employment Exchanges","Promotion","Walk-in Interviews"],2),
+
+  q("mgt_5_298",5,"Moving an employee to a higher position within the company is called ____.",["Transfer","Promotion","Demotion","External Recruitment"],1),
+
+  q("mgt_5_299",5,"Shifting an employee from one department to another at the same level is a ____.",["Promotion","Transfer","Employee Referral","Walk-in"],1),
+
+  q("mgt_5_300",5,"When current employees recommend their friends or relatives for a job, it is called ____.",["Campus Recruitment","Internal Advertisement","Employee Referral","E-Recruitment"],2),
+
+  q("mgt_5_301",5,"Which of the following is an external source of recruitment?",["Promotion","Transfer","Employment Exchanges","Employee Referrals"],2),
+
+  q("mgt_5_302",5,"Hiring fresh graduates directly from colleges/institutes is known as ____.",["Employment Exchange","Campus Recruitment","Private Recruitment Agency","Walk-in Interview"],1),
+
+  q("mgt_5_303",5,"Using platforms like LinkedIn or Naukri to find candidates is called ____.",["E-Recruitment / Social Media","Internal Advertisement","Transfer","Promotion"],0),
+
+  q("mgt_5_304",5,"Private Recruitment Agencies are an ____ source of recruitment.",["Internal","External","Involuntary","Temporary"],1),
+
+  q("mgt_5_305",5,"The first step in the recruitment process is ____.",["Advertising vacancy","Job Analysis","Identify Vacancy","Screening Applications"],2),
+
+  q("mgt_5_306",5,"Preparing the job description and specifications happens during which step?",["Identify Vacancy","Job Analysis","Selecting Recruitment Source","Receiving Application"],1),
+
+  q("mgt_5_307",5,"Deciding whether to hire internally or externally occurs in the ____ step.",["Job Analysis","Selecting Recruitment Source","Advertising Vacancy","Screening"],1),
+
+  q("mgt_5_308",5,"Publicizing the job opening to attract candidates is called ____.",["Screening","Advertising Vacancy","Receiving Application","Job Analysis"],1),
+
+  q("mgt_5_309",5,"Shortlisting eligible candidates from the received applications is the ____ step.",["First","Second","Fifth","Last before selection"],3),
+
+  q("mgt_5_310",5,"Selection is defined as the process of ____.",["Attracting a large pool of applicants","Evaluating and choosing candidates from a pool of applicants","Advertising job vacancies","Deciding the salary packages"],1),
+
+  q("mgt_5_311",5,"The very first step in the selection process is usually the ____.",["Medical Examination","Preliminary Interview","Final Selection","Employment Test"],1),
+
+  q("mgt_5_312",5,"Checking a candidate's mental ability, reasoning, or technical skills is done through ____.",["Preliminary Interview","Application Form Screening","Employment / Aptitude Tests","Reference Check"],2),
+
+  q("mgt_5_313",5,"Which step in the selection process involves a face-to-face conversation to judge personality and communication?",["Employment Test","Personal Interview","Background Check","Medical Examination"],1),
+
+  q("mgt_5_314",5,"Verifying a candidate's past records and character from previous employers is a ____.",["Medical Examination","Background or Reference Check","Preliminary Interview","Induction"],1),
+
+  q("mgt_5_315",5,"Ensuring that the selected candidate is physically fit for the job is done through a ____.",["Personal Interview","Medical Examination","Aptitude Test","Reference Check"],1),
+
+  q("mgt_5_316",5,"Giving the chosen candidate the official job contract is known as ____.",["Induction","Job Offer & Appointment Letter","Preliminary Interview","Medical Examination"],1),
+
+  q("mgt_5_317",5,"Introducing a newly appointed employee to the organization and its culture is called ____.",["Selection","Induction or Orientation","Screening","Testing"],1),
+
+  q("mgt_5_318",5,"Recruitment is a ____ process.",["Negative","Positive","Neutral","Termination"],1),
+
+  q("mgt_5_319",5,"Selection is a ____ process because it eliminates unsuitable candidates.",["Positive","Negative","Neutral","Passive"],1),
+
+  q("mgt_5_320",5,"The objective of recruitment is ____, while the objective of selection is ____.",["To eliminate candidates; to attract them","To attract candidates; to choose the best candidate","To train employees; to fire them","To finalize salary; to advertise the job"],1),
+
+  q("mgt_5_321",5,"Which process comes first in staffing?",["Selection","Recruitment","Training","Induction"],1),
+
+  q("mgt_5_322",5,"The outcome of recruitment is a ____, while the outcome of selection is an ____.",["Appointment of one candidate; pool of applicants","Pool of applicants; appointment of one or few candidates","Job offer; vacancy","Salary package; job description"],1),
+
+  q("mgt_5_323",5,"Recruitment is primarily the responsibility of the ____, while selection is the responsibility of the ____.",["HR Department; HR + line managers","Line managers; HR Department","Finance Department; HR Department","Top management; Lower management"],0),
+
+  q("mgt_5_324",5,"Training is the process of increasing an employee's knowledge, skills, and abilities to ____.",["Reduce their salary","Perform a specific job efficiently","Terminate their employment","Increase their work hours without extra pay"],1),
+
+  q("mgt_5_325",5,"An investment in knowledge pays the best interest is a quote by ____.",["Henry Ford","Peter Drucker","Benjamin Franklin","Elon Musk"],2),
+
+  q("mgt_5_326",5,"Learning while actually performing the job is called ____.",["Off-the-job training","On-the-job training","Compliance training","Soft skill training"],1),
+
+  q("mgt_5_327",5,"Training conducted away from the actual workplace, like in a classroom, is ____.",["On-the-job training","Off-the-job training","Product training","Technical training"],1),
+
+  q("mgt_5_328",5,"Training given to a new employee to familiarize them with the company's rules and environment is ____.",["Orientation Training","Soft Skill Training","Compliance Training","Leadership Training"],0),
+
+  q("mgt_5_329",5,"Teaching an employee how to operate specific machinery or software is known as ____.",["Soft Skill Training","Technical Skill Training","Compliance Training","Orientation Training"],1),
+
+  q("mgt_5_330",5,"Training focused on improving communication, teamwork, and emotional intelligence is called ____.",["Technical Skill Training","Product Training","Soft Skill Training","Compliance Training"],2),
+
+  q("mgt_5_331",5,"Training that ensures employees understand company policies, safety rules, and legal requirements is ____.",["Compliance Training","Soft Skill Training","Leadership Training","Orientation Training"],0),
+
+  q("mgt_5_332",5,"Educating employees about the features and benefits of what the company sells is called ____.",["Compliance Training","Soft Skill Training","Product / Service Training","Leadership Training"],2),
+
+  q("mgt_5_333",5,"Training designed to prepare employees for managerial or higher-level roles is ____.",["Technical Skill Training","Leadership / Management Training","Compliance Training","Product Training"],1),
+
+  q("mgt_5_334",5,"The Chalk Circle method in HRM deals with situations involving ____.",["Salary negotiations","Conflict of interest between employees or departments","Supply chain disruptions","Marketing strategies"],1),
+
+  q("mgt_5_335",5,"According to The Chalk Circle, true ownership or responsibility belongs to the person who ____.",["Has the most formal authority or seniority","Has the highest salary","Genuinely cares, contributes, and adds value","Shouts the loudest"],2),
+
+  q("mgt_5_336",5,"The Chalk Circle reminds HR teams to reward ____ rather than titles, power, or seniority.",["Competence, commitment, and ethics","Age and experience","Political connections","Silence and obedience"],0),
+
+  q("mgt_5_337",5,"The Chalk Circle represents a test of ____.",["Physical strength","Marketing knowledge","Fairness, integrity, and care","Financial planning"],2),
+
+  q("mgt_5_338",5,"When two parties claim the same 'right', the HR manager must judge by ____.",["Hierarchy and seniority","Actions, sincerity, and contribution","Whoever joined the company first","Gender and age"],1),
+
+  q("mgt_5_339",5,"The Chalk Circle means giving responsibility or rewards based on ____.",["Performance, care, and contribution","Seniority and formal position","Personal relationships","Random selection"],0),
+
+  q("mgt_5_340",5,"Real leadership is defined as ____.",["Only taking responsibility for oneself","Taking responsibility of all people belonging to us","Delegating all responsibility to subordinates","Giving orders without listening"],1),
+
+  q("mgt_5_341",5,"Which quality of a team leader involves being unbiased and treating everyone equally?",["Fairness & Objectivity","Adaptability","Patience","Technical Knowledge"],0),
+
+  q("mgt_5_342",5,"The ability to make choices and guide the team in the right direction is called ____.",["Patience","Decision-Making Ability","Soft Skill","Integrity"],1),
+
+  q("mgt_5_343",5,"A leader must understand the practical and technical aspects of the job. This is called ____.",["Technical Knowledge","Patience","Fairness","Adaptability"],0),
+
+  q("mgt_5_344",5,"Expressing ideas clearly and listening actively is part of a leader's ____.",["Technical Knowledge","Good Communication Skills","Discipline","Integrity"],1),
+
+  q("mgt_5_345",5,"A leader's ability to guide, inspire, and influence the team is their ____.",["Training Skill","Leadership Ability","Patience","Decision-Making"],1),
+
+  q("mgt_5_346",5,"Teaching and helping team members grow and improve their skills is known as ____.",["Training & Coaching Skill","Discipline","Integrity","Sense of Responsibility"],0),
+
+  q("mgt_5_347",5,"Resolving conflicts and creating unity among team members requires ____.",["Team Building & Problem Solving ability","Discipline","Patience","Emotional Stability"],0),
+
+  q("mgt_5_348",5,"Staying optimistic and following rules even in difficult times shows a leader's ____.",["Positive attitude & Discipline","Impatience","Laissez-Faire approach","Apathy"],0),
+
+  q("mgt_5_349",5,"Being honest and having strong moral principles is defined as ____.",["Adaptability","Integrity","Patience","Motivation"],1),
+
+  q("mgt_5_350",5,"Arranging tasks, resources, and schedules efficiently requires ____.",["Planning & Organizing Ability","Patience","Emotional Stability","Fairness"],0),
+
+  q("mgt_5_351",5,"Staying calm under pressure and not getting angry quickly is a sign of ____.",["Impatience","Fairness","Patience & Emotional Stability","Strict Autocracy"],2),
+
+  q("mgt_5_352",5,"Inspiring and encouraging team members to give their best is known as ____.",["Motivational Skill","Discipline","Integrity","Planning"],0),
+
+  q("mgt_5_353",5,"Being willing to accept new ideas and changes is called ____.",["Rigidity","Adaptability & Open-mindedness","Bureaucracy","Autocracy"],1),
+
+  q("mgt_5_354",5,"Owning up to the team's successes and failures shows a leader's ____.",["Blame-shifting","Sense of Responsibility","Apathy","Laissez-Faire nature"],1),
+
+  q("mgt_5_355",5,"Autocratic leadership involves ____.",["Full freedom to employees","Centralized control and strict supervision","Participation and teamwork","Rule-based decisions only"],1),
+
+  q("mgt_5_356",5,"Autocratic leadership is best used when ____.",["Creativity is needed","The team is self-motivated","Quick decisions or emergency situations arise","Long-term innovation is required"],2),
+
+  q("mgt_5_357",5,"Democratic leadership emphasizes ____.",["Centralized control","Participation and teamwork","Full freedom","Strict rules"],1),
+
+  q("mgt_5_358",5,"When is democratic leadership most effective?",["In an emergency","When creativity and involvement are needed","When quick decisions are needed","In highly regulated government sectors"],1),
+
+  q("mgt_5_359",5,"Laissez-Faire leadership gives ____.",["Strict supervision","Centralized control","Full freedom to employees","No leadership at all"],2),
+
+  q("mgt_5_360",5,"Laissez-Faire leadership works best when ____.",["The team is unskilled","Quick decisions are needed","The team is skilled and self-motivated","There is an emergency"],2),
+
+  q("mgt_5_361",5,"Bureaucratic leadership is ____.",["Based on personal charm","Rule-based and formal","Based on inspiring vision","Focused on rewards"],1),
+
+  q("mgt_5_362",5,"Government and regulated sectors usually benefit from which leadership style?",["Laissez-Faire","Transformational","Charismatic","Bureaucratic"],3),
+
+  q("mgt_5_363",5,"Transformational leadership is characterized by ____.",["Centralized control","Inspiring vision and motivation","Rule-based decisions","Rewards and performance"],1),
+
+  q("mgt_5_364",5,"Which leadership style is best for driving organizational change or innovation?",["Autocratic","Laissez-Faire","Transformational","Transactional"],2),
+
+  q("mgt_5_365",5,"Transactional leadership is based on ____.",["Personal charm","Inspiring vision","Rewards and performance","Full employee freedom"],2),
+
+  q("mgt_5_366",5,"Routine, target-based jobs are best suited for which leadership style?",["Transformational","Transactional","Charismatic","Laissez-Faire"],1),
+
+  q("mgt_5_367",5,"Charismatic leadership relies on ____.",["Strict rules","Personal charm and influence","Rewards and bonuses","Centralized control"],1),
+
+  q("mgt_5_368",5,"Charismatic leadership is most effective during a ____.",["Routine operation","Crisis or when motivation is needed","Stable environment","Government inspection"],1),
+
+  q("mgt_5_369",5,"In the biscuit supply chain, wheat is purchased from the ____.",["Manufacturer","Supplier","Retailer","Customer"],1),
+
+  q("mgt_5_370",5,"In the biscuit supply chain, the baked biscuit is processed and sent to the ____.",["Farmer","Mill","Warehouse","Supplier"],2),
+
+  q("mgt_5_371",5,"The ultimate goal of SCM is to deliver maximum ____ to customers.",["Defects","Value","Confusion","Delays"],1),
+
+  q("mgt_5_372",5,"Waste reduction in SCM helps in ____.",["Increasing costs","Business growth","Customer dissatisfaction","Slower delivery"],1),
+
+  q("mgt_5_373",5,"Which flow in SCM connects the customer back to the suppliers with data?",["Material Flow","Financial Flow","Information Flow","Logistical Flow"],2),
+
+  q("mgt_5_374",5,"Real-time tracking in logistics is an example of ____.",["Traditional management","Use of IT","Lack of transparency","Manual processing"],1),
+
+  q("mgt_5_375",5,"HRM aims to achieve both individual and ____ objectives.",["Supplier","Organizational","Competitor","Government"],1),
+
+  q("mgt_5_376",5,"The scope of HRM that handles salary and appraisal is ____.",["Industrial Relations","HRD","Personnel Administration","Employee Welfare"],2),
+
+  q("mgt_5_377",5,"To enhance skills and performance, HRM uses ____.",["Grievance handling","Union relations","Training and career planning","Health facilities"],2),
+
+  q("mgt_5_378",5,"To maintain harmony and co-operation, HRM focuses on ____.",["Industrial/Employee Relations","HR Analytics","CSR","Diversity"],0),
+
+  q("mgt_5_379",5,"Employee welfare ensures ____.",["Grievance handling","Wellbeing and satisfaction","Career planning","Adapting to digital changes"],1),
+
+  q("mgt_5_380",5,"Modern HR Practices adapt to ____.",["Union demands","Global and digital changes","Salary disputes","Traditional rules"],1),
+
+  q("mgt_5_381",5,"The Principle of Equity & Fairness means ____.",["Rewarding based on seniority only","Treating all employees equally and without bias","Giving promotions to favorites","Ignoring employee complaints"],1),
+
+  q("mgt_5_382",5,"The Principle of Well-being & Motivation ensures employees are ____.",["Physically and mentally healthy","Working overtime without pay","Kept in the dark about company goals","Strictly monitored"],0),
+
+  q("mgt_5_383",5,"The Principle of Participation & Continuous Development encourages ____.",["Top-down decision making only","Strict discipline","Employee involvement and upgrading skills","Resistance to change"],2),
+
+  q("mgt_5_384",5,"Maintaining rules and order in the organization is the Principle of ____.",["Discipline","Equity","Well-being","Participation"],0),
+
+  q("mgt_5_385",5,"Which source of recruitment involves posting jobs on the company's internal notice board?",["Employee Referrals","Transfer","Internal Advertisements","Campus Recruitment"],2),
+
+  q("mgt_5_386",5,"An external source where candidates arrive without prior appointment is a ____.",["Campus Recruitment","Walk-in Interview","Employment Exchange","Internal Advertisement"],1),
+
+  q("mgt_5_387",5,"Government portals that help job seekers find employment are called ____.",["Private Recruitment Agencies","Employment Exchanges","Campus Recruitments","Employee Referrals"],1),
+
+  q("mgt_5_388",5,"Screening applications is done to ____.",["Attract more candidates","Shortlist eligible candidates for the next step","Advertise the job","Identify the vacancy"],1),
+
+  q("mgt_5_389",5,"Selection is called a negative process because it ____.",["Attracts a large pool","Eliminates unsuitable candidates","Is the first step","Focuses only on advertising"],1),
+
+  q("mgt_5_390",5,"Aptitude tests in the selection process are used to evaluate ____.",["Physical fitness","Mental ability and reasoning","Previous employer references","Personality in a face-to-face setting"],1),
+
+  q("mgt_5_391",5,"A background or reference check is typically done ____.",["Before the preliminary interview","After the personal interview","Before receiving the application","During the medical exam"],1),
+
+  q("mgt_5_392",5,"The final step in the selection process is ____.",["Medical Examination","Personal Interview","Induction or Orientation","Aptitude Test"],2),
+
+  q("mgt_5_393",5,"Training is a systematic process of developing knowledge, skill, and ____.",["Attitude","Apathy","Negativity","Authority"],0),
+
+  q("mgt_5_394",5,"Training that focuses on teamwork and communication is ____.",["Technical Training","Compliance Training","Soft Skill Training","Product Training"],2),
+
+  q("mgt_5_395",5,"The Chalk Circle concept teaches that ownership belongs to the one who ____, not just the one with authority.",["Complains the most","Genuinely cares and contributes","Has the most money","Is the oldest"],1),
+
+  q("mgt_5_396",5,"In The Chalk Circle, when two parties claim the same right, the manager should judge by ____.",["Formal hierarchy","Actions, sincerity, and contribution","Who has been there longer","Who is more vocal"],1),
+
+  q("mgt_5_397",5,"A leader with 'Integrity' is one who ____.",["Blames others for failures","Is honest and has strong moral principles","Keeps all information secret","Avoids making decisions"],1),
+
+  q("mgt_5_398",5,"'Patience & Emotional Stability' in a leader means ____.",["Getting angry quickly","Staying calm under pressure","Ignoring team problems","Making rushed decisions"],1),
+
+  q("mgt_5_399",5,"A leader who uses 'Rewards & Performance' to manage the team is using which leadership style?",["Autocratic","Transformational","Transactional","Charismatic"],2),
+
+  q("mgt_5_400",5,"A leader who relies on 'Personal charm & Influence' to guide the team is using which leadership style?",["Democratic","Bureaucratic","Laissez-Faire","Charismatic"],3),
+
+
 ];
