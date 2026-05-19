@@ -1,5 +1,5 @@
 // src/pages/Quiz.tsx
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Timer, Flame, CheckCircle2, XCircle } from 'lucide-react';
@@ -29,10 +29,11 @@ export default function Quiz() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [timeLeft, setTimeLeft] = useState<number | null>(timePerQuestion);
   
-  // --- THE FIX: We create a state for the deck ---
   const [sessionDeck, setSessionDeck] = useState<Question[]>([]);
+  
+  // --- THE FIX 1: The Invisible Spam Lock ---
+  const actionLock = useRef(false);
 
-  // --- THE FIX: Build and shuffle the deck EXACTLY ONCE when the component mounts ---
   useEffect(() => {
     const pool = questionBank.filter(
       q => q.subject === selectedSubject && selectedUnits.includes(q.unit)
@@ -42,12 +43,10 @@ export default function Quiz() {
     const seen = pool.filter(q => seenQuestionIds.includes(q.id));
 
     const fullDeck = [...shuffleArray(unseen), ...shuffleArray(seen)];
-    
-    // Slice it to the exact question count so you never get 30 instead of 15!
     setSessionDeck(fullDeck.slice(0, questionCount));
     
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // <-- This empty array tells React: "NEVER run this again during the session"
+  }, []); 
 
   const currentQuestion = sessionDeck[currentIndex];
 
@@ -58,8 +57,10 @@ export default function Quiz() {
   }, [currentQuestion?.id]);
 
   const handleSubmit = useCallback(() => {
-    if (selectedOption === null || isSubmitted || !currentQuestion) return;
+    // If already locked, submitted, or no option picked, bounce the click!
+    if (selectedOption === null || isSubmitted || !currentQuestion || actionLock.current) return;
     
+    actionLock.current = true; // LOCK IT INSTANTLY
     setIsSubmitted(true);
     markAsSeen(currentQuestion.id); 
     
@@ -83,6 +84,7 @@ export default function Quiz() {
     if (currentIndex + 1 >= sessionDeck.length) {
       navigate('/results'); 
     } else {
+      actionLock.current = false; // UNLOCK FOR THE NEXT QUESTION
       setCurrentIndex(prev => prev + 1);
       setSelectedOption(null);
       setIsSubmitted(false);
@@ -91,8 +93,9 @@ export default function Quiz() {
   };
 
   useEffect(() => {
-    if (timeLeft === null || isSubmitted || !currentQuestion) return;
+    if (timeLeft === null || isSubmitted || !currentQuestion || actionLock.current) return;
     if (timeLeft === 0) {
+      actionLock.current = true; // LOCK THE TIMER SUBMISSION
       setSelectedOption(-1); 
       setIsSubmitted(true);
       resetStreak();
@@ -110,6 +113,9 @@ export default function Quiz() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      // --- THE FIX 2: Ignore held-down keys ---
+      if (e.repeat) return; 
+
       if (isSubmitted && e.key === 'Enter') {
         handleNext();
         return;
@@ -125,7 +131,6 @@ export default function Quiz() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isSubmitted, handleSubmit, handleNext]);
 
-  // Prevent crashing if the deck hasn't loaded yet
   if (sessionDeck.length === 0 || !currentQuestion) {
     return (
       <div className="text-center mt-20 space-y-4">
