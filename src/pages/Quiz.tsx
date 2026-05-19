@@ -31,8 +31,15 @@ export default function Quiz() {
   
   const [sessionDeck, setSessionDeck] = useState<Question[]>([]);
   
-  // --- THE FIX 1: The Invisible Spam Lock ---
+  // --- THE FIX: The 300ms Cooldown Shield ---
   const actionLock = useRef(false);
+
+  const executeWithLock = (action: () => void) => {
+    if (actionLock.current) return; // Bounce the click if already locked
+    actionLock.current = true;      // Lock the gates
+    action();                       // Run the code
+    setTimeout(() => { actionLock.current = false; }, 300); // Unlock after 300ms
+  };
 
   useEffect(() => {
     const pool = questionBank.filter(
@@ -57,64 +64,72 @@ export default function Quiz() {
   }, [currentQuestion?.id]);
 
   const handleSubmit = useCallback(() => {
-    // If already locked, submitted, or no option picked, bounce the click!
-    if (selectedOption === null || isSubmitted || !currentQuestion || actionLock.current) return;
+    if (selectedOption === null || isSubmitted || !currentQuestion) return;
     
-    actionLock.current = true; // LOCK IT INSTANTLY
-    setIsSubmitted(true);
-    markAsSeen(currentQuestion.id); 
-    
-    const isTimeOut = selectedOption === -1;
-    const isCorrect = !isTimeOut && shuffledOptions[selectedOption].originalIndex === currentQuestion.correctAnswerIndex;
-    
-    if (isCorrect) {
-      incrementScore();
-      incrementStreak();
-    } else {
-      resetStreak();
-      addMistake({
-        question: currentQuestion.text,
-        userAnswer: isTimeOut ? "Time Ran Out" : shuffledOptions[selectedOption].text,
-        correctAnswer: currentQuestion.options[currentQuestion.correctAnswerIndex]
-      });
-    }
+    // Wrap the entire submission in the lock
+    executeWithLock(() => {
+      setIsSubmitted(true);
+      markAsSeen(currentQuestion.id); 
+      
+      const isTimeOut = selectedOption === -1;
+      const isCorrect = !isTimeOut && shuffledOptions[selectedOption].originalIndex === currentQuestion.correctAnswerIndex;
+      
+      if (isCorrect) {
+        incrementScore();
+        incrementStreak();
+      } else {
+        resetStreak();
+        addMistake({
+          question: currentQuestion.text,
+          userAnswer: isTimeOut ? "Time Ran Out" : shuffledOptions[selectedOption].text,
+          correctAnswer: currentQuestion.options[currentQuestion.correctAnswerIndex]
+        });
+      }
+    });
   }, [selectedOption, isSubmitted, currentQuestion, shuffledOptions, incrementScore, incrementStreak, resetStreak, addMistake, markAsSeen]);
 
-  const handleNext = () => {
-    if (currentIndex + 1 >= sessionDeck.length) {
-      navigate('/results'); 
-    } else {
-      actionLock.current = false; // UNLOCK FOR THE NEXT QUESTION
-      setCurrentIndex(prev => prev + 1);
-      setSelectedOption(null);
-      setIsSubmitted(false);
-      setTimeLeft(timePerQuestion); 
-    }
-  };
+  const handleNext = useCallback(() => {
+    if (!isSubmitted) return;
+    
+    // Wrap the next question transition in the lock
+    executeWithLock(() => {
+      if (currentIndex + 1 >= sessionDeck.length) {
+        navigate('/results'); 
+      } else {
+        setCurrentIndex(prev => prev + 1);
+        setSelectedOption(null);
+        setIsSubmitted(false);
+        setTimeLeft(timePerQuestion); 
+      }
+    });
+  }, [isSubmitted, currentIndex, sessionDeck.length, navigate, timePerQuestion]);
 
   useEffect(() => {
-    if (timeLeft === null || isSubmitted || !currentQuestion || actionLock.current) return;
-    if (timeLeft === 0) {
-      actionLock.current = true; // LOCK THE TIMER SUBMISSION
-      setSelectedOption(-1); 
-      setIsSubmitted(true);
-      resetStreak();
-      markAsSeen(currentQuestion.id); 
-      addMistake({
-        question: currentQuestion.text,
-        userAnswer: "Time Ran Out",
-        correctAnswer: currentQuestion.options[currentQuestion.correctAnswerIndex]
+    if (timeLeft === null || isSubmitted || !currentQuestion) return;
+    
+    if (timeLeft <= 0) {
+      // Wrap the auto-submit in the lock
+      executeWithLock(() => {
+        setSelectedOption(-1); 
+        setIsSubmitted(true);
+        resetStreak();
+        markAsSeen(currentQuestion.id); 
+        addMistake({
+          question: currentQuestion.text,
+          userAnswer: "Time Ran Out",
+          correctAnswer: currentQuestion.options[currentQuestion.correctAnswerIndex]
+        });
       });
       return;
     }
     const timer = setInterval(() => setTimeLeft(prev => (prev as number) - 1), 1000);
     return () => clearInterval(timer);
-  }, [timeLeft, isSubmitted, resetStreak, currentQuestion, addMistake, markAsSeen]);
+  }, [timeLeft, isSubmitted, currentQuestion, markAsSeen, resetStreak, addMistake]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // --- THE FIX 2: Ignore held-down keys ---
-      if (e.repeat) return; 
+      // Ignore held-down keys OR if the lock is currently active
+      if (e.repeat || actionLock.current) return; 
 
       if (isSubmitted && e.key === 'Enter') {
         handleNext();
@@ -193,7 +208,9 @@ export default function Quiz() {
         {shuffledOptions.map((optionObj, index) => (
           <button
             key={index}
-            onClick={() => !isSubmitted && setSelectedOption(index)}
+            onClick={() => {
+              if (!isSubmitted && !actionLock.current) setSelectedOption(index);
+            }}
             disabled={isSubmitted}
             className={`relative p-6 rounded-2xl border-2 text-left text-lg font-medium transition-all duration-300 transform active:scale-[0.98]
               ${getCardStyle(index)}`}
