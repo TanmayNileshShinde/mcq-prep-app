@@ -1,73 +1,63 @@
-# React + TypeScript + Vite
+# ⏱️ MCQ Prep Portal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![GitHub stars](https://img.shields.io/github/stars/TanmayNileshShinde/mcq-prep-app.svg?style=flat&color=yellow)](https://github.com/TanmayNileshShinde/mcq-prep-app/stargazers)
+![React 19](https://img.shields.io/badge/React-19-blue?logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-Strict-blue?logo=typescript)
+![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC?logo=tailwind-css)
+![Zustand](https://img.shields.io/badge/State-Zustand-orange)
+![Framer Motion](https://img.shields.io/badge/Motion-Framer_Motion-purple)
 
-Currently, two official plugins are available:
+> **Timed competitive exam simulation portal featuring randomized question banks, real-time performance analytics, unit-level breakdown, and instant scoring feedback.**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## ✨ Key Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Comprehensive Question Banks:** Over 2,000+ curated questions spanning *Emerging Trends in Computer Engineering & IT (ETI)* and *Industrial Management*.
+- **Timed Exam Simulations:** Configurable countdown timer modeling realistic competitive examination pressure.
+- **Instant Detailed Analytics:** Post-exam performance dashboard featuring accuracy percentage, time per question, and unit-by-unit weakness identification.
+- **Study Mode & Flash Practice:** Untimed self-paced study mode with instant reveal and detailed rationale.
+- **State Persistence:** Lightweight state machine orchestrated with Zustand for uninterrupted session recovery.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Tech Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Frontend:** React 19, TypeScript
+- **State Management:** Zustand
+- **Routing:** React Router v7
+- **Styling:** Tailwind CSS
+- **Animations:** Framer Motion
+- **Icons:** Lucide React
+- **Build Tool:** Vite 8
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🚀 Getting Started
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/TanmayNileshShinde/mcq-prep-app.git
+cd mcq-prep-app
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 2. Install dependencies
+```bash
+npm install
 ```
+
+### 3. Run development server
+```bash
+npm run dev
+```
+
+The app will start at `http://localhost:5173`.
+
+---
+
+## 👤 Author
+
+**Tanmay Nilesh Shinde**  
+GitHub: [@TanmayNileshShinde](https://github.com/TanmayNileshShinde)  
+LinkedIn: [Tanmay Shinde](https://www.linkedin.com/in/tanmay-shinde-9b07753bb)
