@@ -60,4 +60,4 @@ The app will start at `http://localhost:5173`.
 
 **Tanmay Nilesh Shinde**  
 GitHub: [@TanmayNileshShinde](https://github.com/TanmayNileshShinde)  
-LinkedIn: [Tanmay Shinde](https://www.linkedin.com/in/tanmay-shinde-9b07753bb)
+LinkedIn: [Tanmay Shinde](https://www.linkedin.com/in/tanmaynileshshinde)
