@@ -31,7 +31,7 @@ export default function Quiz() {
   
   const [sessionDeck, setSessionDeck] = useState<Question[]>([]);
   
-  // --- THE FIX: The 300ms Cooldown Shield ---
+  // cooldown lock
   const actionLock = useRef(false);
 
   const executeWithLock = (action: () => void) => {
@@ -66,7 +66,7 @@ export default function Quiz() {
   const handleSubmit = useCallback(() => {
     if (selectedOption === null || isSubmitted || !currentQuestion) return;
     
-    // Wrap the entire submission in the lock
+    // submission lock
     executeWithLock(() => {
       setIsSubmitted(true);
       markAsSeen(currentQuestion.id); 
@@ -91,7 +91,7 @@ export default function Quiz() {
   const handleNext = useCallback(() => {
     if (!isSubmitted) return;
     
-    // Wrap the next question transition in the lock
+    // next lock
     executeWithLock(() => {
       if (currentIndex + 1 >= sessionDeck.length) {
         navigate('/results'); 
@@ -108,7 +108,7 @@ export default function Quiz() {
     if (timeLeft === null || isSubmitted || !currentQuestion) return;
     
     if (timeLeft <= 0) {
-      // Wrap the auto-submit in the lock
+      // submit lock
       executeWithLock(() => {
         setSelectedOption(-1); 
         setIsSubmitted(true);
@@ -128,7 +128,7 @@ export default function Quiz() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Ignore held-down keys OR if the lock is currently active
+      // key guard
       if (e.repeat || actionLock.current) return; 
 
       if (isSubmitted && e.key === 'Enter') {

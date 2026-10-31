@@ -28,12 +28,12 @@ interface QuizState {
   resetStreak: () => void;
   incrementScore: () => void;
   addMistake: (mistake: Mistake) => void;
-  markAsSeen: (id: string) => void; // <--- NEW: Action to mark a question seen
+  markAsSeen: (id: string) => void; // mark seen
   resetQuizState: () => void; 
-  clearAllProgress: () => void; // <--- NEW: Reset your progress for finals!
+  clearAllProgress: () => void; // reset progress
 }
 
-// We wrap the store in 'persist' so it saves to your browser's Local Storage
+// persist store
 export const useQuizStore = create<QuizState>()(
   persist(
     (set) => ({

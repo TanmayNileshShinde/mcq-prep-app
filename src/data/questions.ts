@@ -25,9 +25,7 @@ const q = (id: string, unit: number, text: string, options: string[], correctAns
 
 export const questionBank: Question[] = [
   
-  // ==========================================
-  // 💻 EMERGING TRENDS IN CE & IT (ETI)
-  // ==========================================
+// eti units
   
   // UNIT 1
   q("eti_1_1",1,"Artificial Intelligence primarily aims to:",["Replace hardware","Increase internet speed","Mimic human intelligence","Store large data"],2),
@@ -1145,11 +1143,9 @@ export const questionBank: Question[] = [
   q("eti_5_200",5,"The ultimate objective of UNIT 5 concepts is:",["Secure and legally compliant cyberspace","Printer maintenance","Cable control","OS deletion"],0),
 
 
-  // ==========================================
-  // 📊 MANAGEMENT (MGT)
-  // ==========================================
+// mgt units
  
-  // UNIT 1: Introduction to Management
+  // unit 1
   q("mgt_1_1",1,"Management is both a science and an art in India evolved through how many broad stages?",["Three","Four","Five","Six"],3),
   q("mgt_1_2",1,"Which bodies in the Vedic era reflected early democratic decision-making?",["Panchayat and Nyaya","Sabha and Samiti","Sabha and Panchayat","Samiti and Nyaya"],1),
   q("mgt_1_3",1,"Who authored the Arthashastra?",["Megasthenes","Ashoka","Kautilya Chanakya","Kalidasa"],2),
@@ -1347,7 +1343,7 @@ export const questionBank: Question[] = [
   q("mgt_1_195",1,"Effective feedback should be",["Late and emotional","Timely, specific and respectful","Harsh and vague","Ignored by the receiver"],1),
 
 
-  // UNIT 2: Project, Operations and Project Management
+  // unit 2
   q("mgt_2_1",2,"Creativity primarily refers to ____",["Implementing ideas in the market","Generating new and original ideas","Reducing product costs only","Advertising a product"],1),
   q("mgt_2_2",2,"According to Torrance (1974), creativity involves all EXCEPT ____",["Sensing problems or gaps","Testing hypotheses","Communicating results","Fixing selling price"],3),
   q("mgt_2_3",2,"Which is NOT a characteristic of creative thinking?",["Originality","Flexibility","Curiosity","Rigidity"],3),
@@ -1454,7 +1450,7 @@ export const questionBank: Question[] = [
   q("mgt_2_104",2,"Which of the following tools can be used together with budgeting for time control?",["PERT and CPM","SWOT analysis","Fishbone diagram","Pareto chart"],0),
   q("mgt_2_105",2,"The main relationship among CPM, PERT and Gantt chart is that ____",["All are planning and scheduling tools in project management","All are budgeting tools","All are quality control tools","None of the above"],0),
 
-  // UNIT 3: Management Practices
+  // unit 3
   q("mgt_3_1",3,"The main purpose of a Quality Circle is to ____",["Solve workplace problems through teamwork","Conduct financial audits","Replace management","Supervise marketing activities"],0),
   q("mgt_3_2",3,"Quality Circles operate on the principle of ____.",["Hierarchical control","Employee participation and empowerment","Autocratic leadership","Strict discipline"],1),
   q("mgt_3_3",3,"The concept of Quality Circles originated in ____.",["USA","Japan","Germany","India"],1),
@@ -1557,7 +1553,7 @@ export const questionBank: Question[] = [
   q("mgt_3_100",3,"How many types of waste (Muda) are identified in Lean?",["3","5","7","9"],2),
   q("mgt_3_101",3,"Which of the following is NOT one of the seven wastes in Lean?",["Overproduction","Waiting time","Product design","Defects"],2),
   q("mgt_3_102",3,"The Lean principle that focuses on 'producing only what is needed when it is needed' is known as ____",["JIT (Just-In-Time)","TQM","MRP","ERP"],0),
-  // Additional important questions derived from the chapter PDF content
+  // extra questions
   q("mgt_3_103",3,"In Kaizen, 'Kai' means ____.",["Good","Change or to correct","Continuous","Standard"],1),
   q("mgt_3_104",3,"In Kaizen, 'Zen' means ____.",["Good","Change","Speed","Waste"],0),
   q("mgt_3_105",3,"Which of the following is NOT a founding element of Kaizen?",["Teamwork","Personal discipline","High capital investment","Quality Circles"],2),
@@ -1587,7 +1583,7 @@ export const questionBank: Question[] = [
   q("mgt_3_129",3,"The step in ISO 9001 certification where external auditors verify compliance is called ____.",["Gap Analysis","Internal Audit","Certification Audit","Documentation"],2),
   q("mgt_3_130",3,"Which of the following is a key feature of ERP?",["Decentralized database","Manual data entry","Centralized database","Department-specific software"],2),
 
-  // UNIT 4: Marketing Management (101-250)
+  // unit 4
   q("mgt_4_101",4,"Which of the following best defines 'Marketing Management'?",["Managing factory workers","The art and science of choosing target markets and getting, keeping, and growing customers through creating, delivering, and communicating superior customer value","Producing goods without considering customer needs","Selling products at any cost"],1),
   q("mgt_4_102",4,"Marketing is about turning customer needs into ____.",["Profitable opportunities","Losses","Waste","Problems"],0),
   q("mgt_4_103",4,"Which of the following is NOT a significance of marketing management?",["Identifying customer needs","Strategic planning","Brand building","Ignoring market competition"],3),
@@ -1740,7 +1736,7 @@ export const questionBank: Question[] = [
   q("mgt_4_250",4,"Negative media coverage affecting an event's reputation is a ____ crisis.",["Natural","Security","Technical","Public Relationship"],3),
 
 
-  // UNIT 5: Supply Chain & Human Resource Management (251-400)
+  // unit 5
 
   q("mgt_5_251",5,"Managing the entire chain of supply efficiently to ensure the right product reaches the right customer at the right time and cost is called ____.",["Logistics Management","Supply Chain Management (SCM)","Human Resource Management","Marketing Management"],1),
 

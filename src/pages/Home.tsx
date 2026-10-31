@@ -17,7 +17,7 @@ export default function Home() {
 
   const [error, setError] = useState<string | null>(null);
 
-  // Auto-hide the error message after 3 seconds
+  // auto-hide error
   useEffect(() => {
     if (error) {
       const timer = setTimeout(() => setError(null), 3000);
@@ -25,7 +25,7 @@ export default function Home() {
     }
   }, [error]);
 
-  // --- DYNAMIC SUBJECTS & UNITS ---
+  // dynamic units
   const subjects = [
     { 
       name: "Emerging Trends in CE & IT", 
@@ -39,7 +39,7 @@ export default function Home() {
     }
   ];
   
-  // Dynamically grab the units for whichever subject is currently clicked
+  // load units
   const activeSubjectData = subjects.find(sub => sub.name === selectedSubject);
   const allUnits = activeSubjectData?.units || [];
 
